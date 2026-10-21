@@ -1,5 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { contact } from '../data/projects';
+
+function useOkaraTime() {
+  const [time, setTime] = useState('');
+  useEffect(() => {
+    const fmt = new Intl.DateTimeFormat('en-GB', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+      timeZone: 'Asia/Karachi',
+    });
+    const update = () => setTime(fmt.format(new Date()));
+    update();
+    const id = window.setInterval(update, 20000);
+    return () => window.clearInterval(id);
+  }, []);
+  return time;
+}
 
 const links = [
   { label: 'Work', href: '#work', num: '02' },
@@ -17,6 +34,7 @@ const menuItems = [
 
 export const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const time = useOkaraTime();
 
   return (
     <>
@@ -28,7 +46,7 @@ export const Header: React.FC = () => {
           <a href="#top" className="fvs-row uppercase text-[19px] leading-none tracking-tight text-ink no-underline" data-hover>
             Shoaib<span style={{ color: 'var(--color-accent)' }}>©</span>Asghar
           </a>
-          <span className="eyebrow hidden lg:block">Okara, Pakistan <span style={{ color: 'var(--color-accent)' }}>/</span> Working worldwide</span>
+          <span className="eyebrow hidden lg:block">Okara, Pakistan <span style={{ color: 'var(--color-accent)' }}>/</span> {time} PKT</span>
           <nav className="flex items-center gap-7">
             {links.map((l) => (
               <a key={l.label} href={l.href} className="hidden md:inline text-[15px] text-ink no-underline hover:text-accent transition-colors" data-hover>

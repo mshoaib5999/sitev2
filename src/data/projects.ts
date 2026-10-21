@@ -36,7 +36,7 @@ export const selectedProjects: SelectedProject[] = [
     url: 'https://phaselinkeng.com/',
     image: '/projects/phaselink-main.jpg',
     detailImage: '/projects/phaselink-detail.jpg',
-    detailCaption: 'Renewable energy & storage',
+    detailCaption: 'Transmission lines, up close',
   },
   {
     id: 'sole-survivors',

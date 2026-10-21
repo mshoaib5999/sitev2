@@ -79,6 +79,18 @@ export const SelectedWork: React.FC = () => {
                 loading={i === 0 ? 'eager' : 'lazy'}
               />
             ))}
+            <span
+              aria-hidden="true"
+              className="fvs-display"
+              style={{
+                position: 'absolute', right: '10px', bottom: '34px', zIndex: 1,
+                fontSize: 'clamp(90px, 10vw, 150px)', lineHeight: 1,
+                color: 'transparent', WebkitTextStroke: '1.5px rgba(237,234,228,0.4)',
+                pointerEvents: 'none',
+              }}
+            >
+              {String(active + 1).padStart(2, '0')}
+            </span>
             <div className="work-stage__bar">
               <span>{String(active + 1).padStart(2, '0')} / {current.place}</span>
               <a href={current.url} target="_blank" rel="noopener noreferrer" className="text-ink no-underline hover:text-accent transition-colors" data-hover>
@@ -86,19 +98,29 @@ export const SelectedWork: React.FC = () => {
               </a>
             </div>
           </div>
-          <div className="flex items-center justify-between mt-4">
-            <div className="flex gap-2">
+          <div className="flex items-center gap-5 mt-5">
+            <span className="eyebrow" style={{ color: 'var(--color-text)' }}>
+              ( {String(active + 1).padStart(2, '0')} / {String(selectedProjects.length).padStart(2, '0')} )
+            </span>
+            <div className="flex flex-1 gap-2" role="tablist" aria-label="Choose project">
               {selectedProjects.map((p, i) => (
                 <button
                   key={p.id}
+                  role="tab"
+                  aria-selected={i === active}
                   aria-label={`Show ${p.name}`}
-                  className={`work-dot ${i === active ? 'is-active' : ''}`}
+                  className="group flex-1 bg-transparent border-0 p-0 py-2 cursor-pointer"
                   onClick={() => setActive(i)}
                   data-hover
-                />
+                >
+                  <span
+                    className="block h-[3px] w-full transition-colors duration-300"
+                    style={{ background: i <= active ? 'var(--color-accent)' : 'rgba(237,234,228,0.18)' }}
+                  />
+                </button>
               ))}
             </div>
-            <span className="eyebrow">( {String(active + 1).padStart(2, '0')} — {current.name} )</span>
+            <span className="eyebrow hidden sm:block">{current.name}</span>
           </div>
           <p className="text-muted leading-relaxed mt-5 text-[15px]">{current.description}</p>
         </div>

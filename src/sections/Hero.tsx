@@ -25,7 +25,8 @@ export const Hero: React.FC = () => {
         <div className="md:justify-self-end" data-reveal>
           <a
             href="#work"
-            className="inline-block rounded-full bg-ink px-7 py-3.5 text-[15px] font-medium text-[#111010] no-underline transition-colors hover:bg-accent"
+            className="inline-block rounded-full border px-7 py-3.5 text-[15px] font-medium text-ink no-underline transition-colors hover:bg-accent hover:text-[#111010] hover:border-transparent"
+            style={{ borderColor: 'var(--color-chip-border)' }}
             data-hover
           >
             See the work →
