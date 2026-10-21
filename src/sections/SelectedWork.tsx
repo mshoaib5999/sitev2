@@ -49,7 +49,6 @@ export const SelectedWork: React.FC = () => {
               className={`work-row ${i === active ? 'is-active' : ''}`}
               onMouseEnter={() => setActive(i)}
               onFocus={() => setActive(i)}
-              data-reveal
               data-hover
             >
               <span className="work-row__num">{String(i + 1).padStart(2, '0')}</span>
