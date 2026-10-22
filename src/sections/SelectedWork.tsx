@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { selectedProjects } from '../data/projects';
 
 export const SelectedWork: React.FC = () => {
@@ -41,34 +42,34 @@ export const SelectedWork: React.FC = () => {
         {/* List */}
         <div onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>
           {selectedProjects.map((p, i) => (
-            <a
-              key={p.id}
-              href={p.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`work-row ${i === active ? 'is-active' : ''}`}
-              onMouseEnter={() => setActive(i)}
-              onFocus={() => setActive(i)}
-              data-hover
-            >
-              <span className="work-row__num">{String(i + 1).padStart(2, '0')}</span>
-              <span className="work-row__name fvs-row">{p.name}</span>
-              <span className="work-row__year">{p.year}</span>
-              <span className="work-row__meta">
-                <span>{p.service}</span>
-                <span style={{ color: 'var(--color-accent)' }}>{p.place}</span>
-                <span className="work-row__cta">View project →</span>
-              </span>
-            </a>
+            <div key={p.id} data-reveal style={{ transitionDelay: `${i * 80}ms` }}>
+              <Link
+                to={`/work/${p.id}`}
+                className={`work-row ${i === active ? 'is-active' : ''}`}
+                onMouseEnter={() => setActive(i)}
+                onFocus={() => setActive(i)}
+                data-hover
+                data-cursor="View"
+              >
+                <span className="work-row__num">{String(i + 1).padStart(2, '0')}</span>
+                <span className="work-row__name fvs-row">{p.name}</span>
+                <span className="work-row__year">{p.year}</span>
+                <span className="work-row__meta">
+                  <span>{p.service}</span>
+                  <span style={{ color: 'var(--color-accent)' }}>{p.place}</span>
+                  <span className="work-row__cta">View project →</span>
+                </span>
+              </Link>
+            </div>
           ))}
           <p className="eyebrow mt-8" data-reveal>
-            (Hover a project — the picture follows. Click — the live site opens.)
+            (Hover — the picture follows. Click — the full case study opens.)
           </p>
         </div>
 
         {/* Stage */}
         <div className="lg:sticky lg:top-28" data-reveal>
-          <div className="work-stage">
+          <div className="work-stage" data-cursor="View">
             {selectedProjects.map((p, i) => (
               <img
                 key={p.id}

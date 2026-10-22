@@ -67,6 +67,7 @@ export const selectedProjects: SelectedProject[] = [
 ];
 
 export interface IndexProject {
+  slug: string;
   name: string;
   category: string;
   place: string;
@@ -74,14 +75,14 @@ export interface IndexProject {
 }
 
 export const moreProjects: IndexProject[] = [
-  { name: 'RossAi', category: 'AI & sensor technology', place: 'New Zealand', url: 'https://rossai.co.nz' },
-  { name: 'Lumora Nutrition', category: 'WooCommerce — health & wellness', place: 'USA / Global', url: 'https://trylumoradaily.com' },
-  { name: 'AION Dubai', category: 'Real estate investment, bilingual', place: 'UAE / Netherlands', url: 'https://aiondubai.com' },
-  { name: 'Flip My Life', category: 'Financial & wealth advisory', place: 'Canada', url: 'https://flipmylife.com' },
-  { name: 'Creative Contracting', category: 'Engineering & construction', place: 'USA', url: 'https://tampaccs.com' },
-  { name: 'Vice Pharmaceuticals', category: 'WooCommerce — research store', place: 'USA', url: 'https://vice-pharma.com' },
-  { name: 'Build A Shed', category: 'Construction services', place: 'UAE', url: 'https://buildashed.ae' },
-  { name: 'MyTeam Support', category: 'Community & donations', place: 'Non-profit', url: 'https://myteamsupport.com' },
+  { slug: 'rossai', name: 'RossAi', category: 'AI & sensor technology', place: 'New Zealand', url: 'https://rossai.co.nz' },
+  { slug: 'lumora-nutrition', name: 'Lumora Nutrition', category: 'WooCommerce — health & wellness', place: 'USA / Global', url: 'https://trylumoradaily.com' },
+  { slug: 'aion-dubai', name: 'AION Dubai', category: 'Real estate investment, bilingual', place: 'UAE / Netherlands', url: 'https://aiondubai.com' },
+  { slug: 'flip-my-life', name: 'Flip My Life', category: 'Financial & wealth advisory', place: 'Canada', url: 'https://flipmylife.com' },
+  { slug: 'creative-contracting', name: 'Creative Contracting', category: 'Engineering & construction', place: 'USA', url: 'https://tampaccs.com' },
+  { slug: 'vice-pharmaceuticals', name: 'Vice Pharmaceuticals', category: 'WooCommerce — research store', place: 'USA', url: 'https://vice-pharma.com' },
+  { slug: 'build-a-shed', name: 'Build A Shed', category: 'Construction services', place: 'UAE', url: 'https://buildashed.ae' },
+  { slug: 'myteam-support', name: 'MyTeam Support', category: 'Community & donations', place: 'Non-profit', url: 'https://myteamsupport.com' },
 ];
 
 export interface ExperienceItem {
@@ -110,6 +111,17 @@ export const experience: ExperienceItem[] = [
     place: 'Lahore, Pakistan',
     period: 'Nov 2022 — Apr 2023',
   },
+];
+
+export const skills: string[] = [
+  'WordPress',
+  'WooCommerce',
+  'Elementor Pro',
+  'ACF Pro',
+  'PHP',
+  'Figma to WordPress',
+  'PageSpeed / Core Web Vitals',
+  'On-page SEO',
 ];
 
 export const contact = {

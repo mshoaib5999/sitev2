@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { moreProjects, experience } from '../data/projects';
 
 export const MoreWork: React.FC = () => {
@@ -12,12 +13,12 @@ export const MoreWork: React.FC = () => {
       </div>
       <div>
         {moreProjects.map((p) => (
-          <a key={p.name} href={p.url} target="_blank" rel="noopener noreferrer" className="index-row" data-reveal data-hover>
+          <Link key={p.name} to={`/work/${p.slug}`} className="index-row" data-reveal data-hover data-cursor="View">
             <span className="index-row__name fvs-row">{p.name}</span>
             <span className="eyebrow">{p.category}</span>
             <span className="eyebrow">{p.place}</span>
-            <span className="justify-self-end text-accent">↗</span>
-          </a>
+            <span className="justify-self-end text-accent">→</span>
+          </Link>
         ))}
       </div>
 

@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import { selectedProjects } from '../data/projects';
 
-interface Shot { src: string; caption: string; projectNum: string; }
+interface Shot { src: string; type: string; name: string; projectNum: string; }
 
 const shots: Shot[] = selectedProjects.flatMap((p, i) => [
-  { src: p.image, caption: `${p.name} — Wide`, projectNum: String(i + 1).padStart(2, '0') },
-  { src: p.detailImage, caption: `${p.name} — ${p.detailCaption}`, projectNum: String(i + 1).padStart(2, '0') },
+  { src: p.image, type: 'Wide', name: p.name, projectNum: String(i + 1).padStart(2, '0') },
+  { src: p.detailImage, type: 'Detail', name: p.name, projectNum: String(i + 1).padStart(2, '0') },
 ]);
 
 export const UpClose: React.FC = () => {
@@ -42,14 +42,16 @@ export const UpClose: React.FC = () => {
         onPointerUp={onUp}
         onPointerLeave={onUp}
         data-reveal
+        data-cursor="Look"
       >
         {shots.map((s, i) => (
-          <figure key={i} className="flex-none m-0" style={{ width: 'min(380px, 78vw)' }}>
-            <div className="overflow-hidden bg-surface" style={{ aspectRatio: '4 / 3' }}>
-              <img src={s.src} alt={s.caption} className="w-full h-full object-cover" loading="lazy" draggable={false} />
+          <figure key={i} className="flex-none m-0" style={{ width: 'min(320px, 72vw)' }}>
+            <div className="overflow-hidden bg-surface" style={{ aspectRatio: '4 / 5', borderRadius: 'var(--radius-image)' }}>
+              <img src={s.src} alt={`${s.name} — ${s.type}`} className="w-full h-full object-cover" loading="lazy" draggable={false} />
             </div>
-            <figcaption className="eyebrow mt-3">
-              ({s.projectNum}) {s.caption}
+            <figcaption className="flex items-baseline justify-between mt-3">
+              <span className="eyebrow" style={{ color: 'var(--color-faint)' }}>{s.type}</span>
+              <span className="eyebrow">({s.projectNum}) {s.name}</span>
             </figcaption>
           </figure>
         ))}

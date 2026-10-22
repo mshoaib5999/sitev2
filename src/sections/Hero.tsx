@@ -1,8 +1,32 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const marqueeWords = ['Design', 'Build', 'Motion', 'WordPress', 'WooCommerce', 'Elementor', 'Speed'];
 
 export const Hero: React.FC = () => {
+  const nameRef = useRef<HTMLHeadingElement>(null);
+
+  // Gentle parallax: the name lags the scroll slightly, like the reference.
+  useEffect(() => {
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const el = nameRef.current;
+        if (el) {
+          const y = Math.min(window.scrollY, window.innerHeight);
+          el.style.transform = `translateY(${y * 0.16}px)`;
+          el.style.opacity = String(1 - Math.min(0.55, (y / window.innerHeight) * 0.55));
+        }
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
   return (
     <section id="top" className="gutter flex flex-col justify-between" style={{ minHeight: '100svh', paddingTop: '104px' }}>
       <div className="eyebrow flex items-start justify-between" data-reveal>
@@ -11,7 +35,7 @@ export const Hero: React.FC = () => {
         <span>Okara, Pakistan</span>
       </div>
 
-      <h1 className="hero__name fvs-display" aria-label="Shoaib Asghar">
+      <h1 ref={nameRef} className="hero__name fvs-display" aria-label="Shoaib Asghar" style={{ willChange: 'transform, opacity' }}>
         <span className="hero__line"><span>Shoaib</span></span>
         <span className="hero__line hero__line--second"><span>Asghar</span></span>
       </h1>
@@ -25,9 +49,10 @@ export const Hero: React.FC = () => {
         <div className="md:justify-self-end" data-reveal>
           <a
             href="#work"
-            className="inline-block rounded-full border px-7 py-3.5 text-[15px] font-medium text-ink no-underline transition-colors hover:bg-accent hover:text-[#111010] hover:border-transparent"
+            className="inline-block rounded-full border px-7 py-[18px] font-mono text-[12px] uppercase tracking-[0.06em] text-ink no-underline transition-colors hover:bg-accent hover:text-[#111010] hover:border-transparent"
             style={{ borderColor: 'var(--color-chip-border)' }}
             data-hover
+            data-cursor="Look"
           >
             See the work →
           </a>
