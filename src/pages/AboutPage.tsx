@@ -72,9 +72,9 @@ export const AboutPage: React.FC = () => (
         {experience.map((e) => (
           <div key={e.company} className="index-row" data-reveal>
             <span className="index-row__name fvs-row" style={{ fontSize: 'clamp(22px, 2.6vw, 38px)' }}>{e.role}</span>
-            <span className="eyebrow">{e.company}</span>
+            <span className="eyebrow">{e.company} — {e.place}</span>
             <span className="eyebrow">{e.period}</span>
-            <span className="eyebrow justify-self-end">{e.place}</span>
+            <span />
           </div>
         ))}
       </div>
