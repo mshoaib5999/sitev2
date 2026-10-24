@@ -51,22 +51,35 @@ export const UpClose: React.FC = () => {
   const onPointerDown = (e: React.PointerEvent) => {
     if (e.pointerType === 'mouse' && e.button !== 0) return;
     dragState.current = { down: true, startX: e.clientX, startOffset: dragOffset.current, moved: 0 };
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   };
-  const onPointerMove = (e: React.PointerEvent) => {
-    const d = dragState.current;
-    if (!d.down) return;
-    const dx = e.clientX - d.startX;
-    d.moved = Math.max(d.moved, Math.abs(dx));
-    dragOffset.current = d.startOffset + dx;
-  };
-  const onPointerUp = () => {
-    if (dragState.current.moved > 6) {
-      suppressClick.current = true;
-      setTimeout(() => { suppressClick.current = false; }, 50);
-    }
-    dragState.current.down = false;
-  };
+
+  // Drag is tracked on the window, NOT via setPointerCapture on the track:
+  // capturing the pointer on the container retargets the click event to the
+  // container, so the card links would never receive a plain click.
+  useEffect(() => {
+    const move = (e: PointerEvent) => {
+      const d = dragState.current;
+      if (!d.down) return;
+      const dx = e.clientX - d.startX;
+      d.moved = Math.max(d.moved, Math.abs(dx));
+      dragOffset.current = d.startOffset + dx;
+    };
+    const up = () => {
+      if (dragState.current.down && dragState.current.moved > 6) {
+        suppressClick.current = true;
+        setTimeout(() => { suppressClick.current = false; }, 80);
+      }
+      dragState.current.down = false;
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+    window.addEventListener('pointercancel', up);
+    return () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+      window.removeEventListener('pointercancel', up);
+    };
+  }, []);
   const onClickCapture = (e: React.MouseEvent) => {
     if (suppressClick.current) {
       e.preventDefault();
@@ -87,9 +100,6 @@ export const UpClose: React.FC = () => {
           className="flex gap-5"
           style={{ width: 'max-content', willChange: 'transform', touchAction: 'pan-y', cursor: 'grab' }}
           onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={onPointerUp}
-          onPointerCancel={onPointerUp}
           onClickCapture={onClickCapture}
         >
           {shots.map((s) => (
