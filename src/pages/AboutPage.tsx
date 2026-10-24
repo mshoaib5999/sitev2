@@ -62,10 +62,6 @@ export const AboutPage: React.FC = () => (
       ))}
     </div>
 
-    <Skills />
-
-    <HowIWork />
-
     <div className="gutter mt-28">
       <h2 className="eyebrow m-0 mb-4" style={{ color: 'var(--color-accent)', fontSize: '13px' }} data-reveal>( Career )</h2>
       <div>
@@ -83,5 +79,10 @@ export const AboutPage: React.FC = () => (
         <Link to="/contact" className="text-accent no-underline" data-hover>Yours could be next →</Link>
       </p>
     </div>
+
+    <Skills />
+
+    <HowIWork />
+
   </div>
 );

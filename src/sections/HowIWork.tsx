@@ -43,11 +43,14 @@ const steps = [
 
 export const HowIWork: React.FC = () => (
   <div className="gutter mt-28">
-    <h2 className="eyebrow m-0 mb-4" style={{ color: 'var(--color-accent)', fontSize: '13px' }} data-reveal>( How I work )</h2>
-    <p className="text-muted mt-0 mb-14" style={{ fontSize: '17px', lineHeight: 1.65, maxWidth: '54ch' }} data-reveal>
-      A clear process, no surprises: you always know what happens next, what it costs and when it lands.
-      Four steps from first call to a site that keeps working for you.
-    </p>
+    <div className="text-center">
+      <h2 className="eyebrow m-0 mb-5" style={{ color: 'var(--color-accent)', fontSize: '13px' }} data-reveal>( Process )</h2>
+      <div className="fvs-display uppercase m-0 leading-none" style={{ fontSize: 'clamp(46px, 6.5vw, 92px)' }} data-reveal>How I work</div>
+      <p className="text-muted mt-6 mb-14 mx-auto" style={{ fontSize: '17px', lineHeight: 1.65, maxWidth: '54ch' }} data-reveal>
+        A clear process, no surprises: you always know what happens next, what it costs and when it lands.
+        Four steps from first call to a site that keeps working for you.
+      </p>
+    </div>
 
     <div className="process-journey">
       {/* Winding centre line (desktop) */}
