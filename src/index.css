@@ -247,7 +247,7 @@ a.index-row:hover .index-row__name { transform: translateX(10px); color: var(--c
 
 /* ————— Process journey (About — How I work) ————— */
 .process-journey { position: relative; }
-.process-line { position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 100%; display: none; }
+.process-line { position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); width: 72px; height: 100%; display: none; }
 .process-line path { stroke: rgba(255, 198, 26, 0.25); stroke-width: 1.2; stroke-dasharray: 3 7; }
 @media (min-width: 1024px) { .process-line { display: block; } }
 .process-row { position: relative; display: flex; margin-bottom: 34px; }
@@ -258,7 +258,7 @@ a.index-row:hover .index-row__name { transform: translateX(10px); color: var(--c
 .process-card:hover .process-card__icon { opacity: 0.13; }
 .process-dot { display: none; }
 @media (min-width: 1024px) {
-  .process-card { width: 44%; }
+  .process-card { width: 41%; }
   .process-row.is-right { justify-content: flex-end; }
   .process-dot { display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 11px; height: 11px; border-radius: 50%; background: var(--color-accent); box-shadow: 0 0 0 5px var(--color-bg); z-index: 2; }
 }

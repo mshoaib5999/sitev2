@@ -55,7 +55,7 @@ export const HowIWork: React.FC = () => (
     <div className="process-journey">
       {/* Winding centre line (desktop) */}
       <svg className="process-line" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M50,0 C85,140 15,300 50,470 C85,640 15,800 50,1000" fill="none" vectorEffect="non-scaling-stroke" />
+        <path d="M50,0 C68,140 32,300 50,470 C68,640 32,800 50,1000" fill="none" vectorEffect="non-scaling-stroke" />
       </svg>
 
       {steps.map((s, i) => (
