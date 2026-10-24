@@ -224,6 +224,23 @@ a.index-row:hover .index-row__name { transform: translateX(10px); color: var(--c
 }
 .intro.is-done { transform: translateY(-101%); }
 
+.intro-ltr { display: inline-block; opacity: 0; animation: intro-drop 0.7s cubic-bezier(0.22, 1.2, 0.36, 1) forwards; }
+@keyframes intro-drop {
+  from { transform: translateY(-0.55em); opacity: 0; }
+  60% { opacity: 1; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.intro-box {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--color-accent); color: var(--color-on-accent);
+  padding: 0.04em 0.1em 0.08em; margin: 0 0.03em; opacity: 0;
+  animation: intro-box-in 0.8s cubic-bezier(0.22, 1.25, 0.36, 1) 0.45s forwards;
+}
+@keyframes intro-box-in {
+  from { transform: rotate(-22deg) translateY(-0.5em); opacity: 0; }
+  to { transform: rotate(0deg) translateY(0); opacity: 1; }
+}
+
 /* ————— Custom cursor (desktop pointers only) ————— */
 .cursor-dot, .cursor-ring, .cursor-badge {
   position: fixed; top: 0; left: 0; z-index: 200; pointer-events: none;

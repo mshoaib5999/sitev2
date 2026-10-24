@@ -28,7 +28,7 @@ interface VeilInfo { title: string; meta: string; }
 
 function routeInfo(pathname: string): VeilInfo {
   if (pathname === '/') return { title: 'HOME', meta: 'PORTFOLIO ©2026' };
-  if (pathname === '/work') return { title: 'WORK', meta: '10 PROJECTS' };
+  if (pathname === '/work') return { title: 'WORK', meta: '11 PROJECTS' };
   const wp = pathname.match(/^\/work\/(.+)$/);
   if (wp) return { title: (getProject(wp[1])?.name ?? 'Work').toUpperCase(), meta: 'CASE STUDY' };
   if (pathname === '/about') return { title: 'ABOUT', meta: 'SINCE 2022' };

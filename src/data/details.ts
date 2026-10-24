@@ -163,6 +163,17 @@ const more: FullProject[] = [
     ],
     url: 'https://myteamsupport.com', image: '/projects/more/myteam.jpg',
   },
+  {
+    slug: 'north-development', name: 'North Development', yearLabel: 'Earlier work', service: 'Real estate development website', place: 'Miami, USA',
+    description: 'A new model of residential ownership — an elegant corporate website for a Miami real estate developer, presenting its portfolio, approach and press with a hospitality-first feel.',
+    overview: 'North Development builds relevant, enduring residential spaces across the United States — a portfolio of properties selected for exceptional location, timeless appeal and enduring relevance, delivered by a multidisciplinary team spanning construction, brand creation, project management, operations and marketing. The website presents that story with the same polish as the properties themselves: the portfolio (including Domus Brickell Park, Domus Brickell Center and House of Wellness), the firm’s approach, and its growing press coverage.',
+    features: [
+      { title: 'Portfolio showcase', text: 'Projects such as Domus Brickell Park and Domus Brickell Center presented with large, confident imagery.' },
+      { title: 'Story & approach', text: 'About and approach sections that explain the firm’s hospitality-first model of residential ownership.' },
+      { title: 'Press & news', text: 'A news section carrying the firm’s media coverage, from Forbes to The Real Deal.' },
+    ],
+    url: 'https://northdevelopment.com', image: '/projects/more/north-development.jpg',
+  },
 ];
 
 export const allProjects: FullProject[] = [...main, ...more];
