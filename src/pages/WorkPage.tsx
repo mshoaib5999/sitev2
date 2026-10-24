@@ -3,15 +3,7 @@ import { Link } from 'react-router-dom';
 import { allProjects } from '../data/details';
 import { KineticText, useKinetic } from '../sections/Kinetic';
 
-// Posters for the 4 featured projects; the 8 archive rows fall back to
-// their own project image — so every row shows something on hover.
-const posterBySlug: Record<string, string> = {
-  'bastide-de-basson': '/projects/posters/poster-bastide-de-basson.jpg',
-  'phaselink': '/projects/posters/poster-phaselink.jpg',
-  'sole-survivors': '/projects/posters/poster-sole-survivors.jpg',
-  'goldstar-learning': '/projects/posters/poster-goldstar-learning.jpg',
-};
-const previewFor = (slug: string, image: string) => posterBySlug[slug] ?? image;
+import { posterFor as previewFor } from '../data/posters';
 
 export const WorkPage: React.FC = () => {
   const titleRef = useKinetic<HTMLHeadingElement>();
@@ -102,7 +94,7 @@ export const WorkPage: React.FC = () => {
       aria-hidden="true"
       className="pointer-events-none fixed left-0 top-0 hidden lg:block overflow-hidden"
       style={{
-        width: '360px', aspectRatio: '3 / 2', borderRadius: 'var(--radius-image)',
+        width: '300px', aspectRatio: '3 / 4', borderRadius: 'var(--radius-image)',
         zIndex: 60, opacity: 0, background: 'var(--color-surface)',
         boxShadow: '0 30px 60px rgba(0,0,0,0.45)',
       }}
@@ -114,7 +106,7 @@ export const WorkPage: React.FC = () => {
             alt=""
             loading="lazy"
             className="absolute inset-0 h-full w-full"
-            style={{ objectFit: p.slug === 'bastide-de-basson' ? 'contain' : 'cover' }}
+            style={{ objectFit: 'cover' }}
             draggable={false}
           />
         </div>

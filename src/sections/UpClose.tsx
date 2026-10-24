@@ -1,12 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { selectedProjects } from '../data/projects';
+import { Link } from 'react-router-dom';
+import { allProjects } from '../data/details';
+import { posterBySlug } from '../data/posters';
 
-interface Shot { src: string; type: string; name: string; projectNum: string; }
+interface Shot { src: string; type: string; name: string; projectNum: string; slug: string; }
 
-const shots: Shot[] = selectedProjects.flatMap((p, i) => [
-  { src: p.image, type: 'Wide', name: p.name, projectNum: String(i + 1).padStart(2, '0') },
-  { src: p.detailImage, type: 'Detail', name: p.name, projectNum: String(i + 1).padStart(2, '0') },
-]);
+// Every project's poster, one card each — clicking a card opens that
+// project's case study. Projects without a poster use their own image.
+const shots: Shot[] = allProjects.map((p, i) => ({
+  src: posterBySlug[p.slug] ?? p.image,
+  type: posterBySlug[p.slug] ? 'Poster' : 'Image',
+  name: p.name,
+  projectNum: String(i + 1).padStart(2, '0'),
+  slug: p.slug,
+}));
 
 /**
  * Scroll-driven gallery, like the reference: the section pins while the
@@ -66,7 +73,7 @@ export const UpClose: React.FC = () => {
         </div>
         <div ref={trackRef} className="flex gap-5 px-[var(--gutter)]" style={{ width: 'max-content', willChange: 'transform' }}>
           {shots.map((s, i) => (
-            <figure key={i} className="flex-none m-0" style={{ width: 'min(330px, 74vw)' }}>
+            <Link key={s.slug} to={`/work/${s.slug}`} className="flex-none m-0 block no-underline" style={{ width: 'min(330px, 74vw)' }} data-hover>
               <div className="overflow-hidden bg-surface" style={{ aspectRatio: '4 / 5', borderRadius: 'var(--radius-image)' }}>
                 <img src={s.src} alt={`${s.name} — ${s.type}`} className="w-full h-full object-cover" loading="lazy" draggable={false} />
               </div>
@@ -74,7 +81,7 @@ export const UpClose: React.FC = () => {
                 <span className="eyebrow">({s.projectNum}) {s.name}</span>
                 <span className="eyebrow" style={{ color: 'var(--color-faint)' }}>{s.type}</span>
               </figcaption>
-            </figure>
+            </Link>
           ))}
         </div>
       </div>

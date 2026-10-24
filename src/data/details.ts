@@ -153,28 +153,6 @@ const more: FullProject[] = [
     url: 'https://tampaccs.com', image: '/projects/more/creative-contracting.jpg',
   },
   {
-    slug: 'vice-pharmaceuticals', name: 'Vice Pharmaceuticals', yearLabel: 'Earlier work', service: 'WooCommerce — research compounds store', place: 'USA',
-    description: 'A high-security WooCommerce store with lab Certificate of Analysis (COA) document downloads, an affiliate programme section and automated shipping workflows.',
-    overview: 'Vice Pharmaceuticals sells research compounds online, where documentation is everything. The store attaches a lab Certificate of Analysis to products for download, runs an affiliate programme, and automates the shipping and policy workflows behind a secure checkout.',
-    features: [
-      { title: 'COA document system', text: 'Lab certificates attached to products and available for download.' },
-      { title: 'Secure checkout', text: 'Payments, shipping and policy pages set up for a regulated-feeling store.' },
-      { title: 'Affiliate programme', text: 'A dedicated affiliate section with its own sign-up route.' },
-    ],
-    url: 'https://vice-pharma.com', image: '/projects/more/vice-pharma.jpg',
-  },
-  {
-    slug: 'build-a-shed', name: 'Build A Shed', yearLabel: 'Earlier work', service: 'Construction services website', place: 'UAE',
-    description: 'A construction and shed-building services website for the UAE market, with a secure client-access area.',
-    overview: 'Build A Shed designs and builds sheds and outdoor structures in the UAE. The site presents the service range for the local market and includes a secure client-access area for project customers.',
-    features: [
-      { title: 'Built for the UAE market', text: 'Service pages and presentation tailored to local customers.' },
-      { title: 'Secure client area', text: 'A protected access area for clients, separate from the public site.' },
-      { title: 'WordPress build', text: 'A clean, manageable site the business can update itself.' },
-    ],
-    url: 'https://buildashed.ae', image: '/projects/more/build-a-shed.jpg',
-  },
-  {
     slug: 'myteam-support', name: 'MyTeam Support', yearLabel: 'Earlier work', service: 'Community & membership website', place: 'Non-profit',
     description: 'A community and membership website supporting an organisation’s engagement and outreach goals, with a secure online donation system.',
     overview: 'MyTeam Support is a community organisation. Their website supports engagement and outreach — and, most importantly, lets supporters donate securely online, so contributions flow straight through the site they already trust.',

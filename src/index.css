@@ -292,29 +292,7 @@ a.index-row:hover .index-row__name { transform: translateX(10px); color: var(--c
 }
 .veil__rule { height: 1px; background: rgba(17, 16, 16, 0.55); margin-top: 26px; }
 
-/* Portrait as a full-screen cover on the opening screen — every page
-   except project case studies. The image fills the whole veil edge to
-   edge; the title and meta switch to cream so they read over the photo,
-   with a soft dark gradient at the bottom and left for legibility. */
-.veil--portrait { background: #111010; color: var(--color-text); }
-.veil--portrait .veil__portrait {
-  position: absolute; inset: 0; z-index: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: 70% 25%;
-}
-.veil--portrait::after {
-  content: ""; position: absolute; inset: 0; z-index: 0;
-  background:
-    linear-gradient(to top, rgba(17, 16, 16, 0.5), rgba(17, 16, 16, 0) 55%),
-    linear-gradient(to right, rgba(17, 16, 16, 0.35), rgba(17, 16, 16, 0) 45%);
-}
-.veil--portrait .veil__rule { background: rgba(237, 234, 228, 0.55); }
 .veil__top, .veil__bottom { position: relative; z-index: 1; }
-@media (max-width: 900px) {
-  .veil--portrait .veil__portrait, .veil--portrait::after { display: none; }
-  .veil--portrait { background: var(--color-accent); color: var(--color-on-accent); }
-  .veil--portrait .veil__rule { background: rgba(17, 16, 16, 0.55); }
-}
 
 /* ————— Inner pages ————— */
 .page-huge {

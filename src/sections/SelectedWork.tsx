@@ -6,16 +6,14 @@ import { selectedProjects } from '../data/projects';
  * The project's poster (desktop + mobile mockup). Static on purpose:
  * no scrolling website, no iframe — just the poster, instantly visible.
  */
-// Bastide's new poster is portrait, so it shows whole (contain) instead of
-// being cropped to the landscape frames; the landscape posters fill (cover).
-const PosterImg: React.FC<{ src: string; alt: string; contain?: boolean }> = ({ src, alt, contain }) => (
+const PosterImg: React.FC<{ src: string; alt: string }> = ({ src, alt }) => (
   <div className="absolute inset-0 overflow-hidden">
     <img
       src={src}
       alt={alt}
       loading="lazy"
       className="absolute inset-0 h-full w-full"
-      style={{ objectFit: contain ? 'contain' : 'cover' }}
+      style={{ objectFit: 'cover' }}
       draggable={false}
     />
   </div>
@@ -79,7 +77,7 @@ export const SelectedWork: React.FC = () => {
         style={{ opacity: i === active && (alwaysOn || stageShowsImage) ? 1 : 0 }}
         aria-hidden={i !== active}
       >
-        <PosterImg src={p.poster} alt={`${p.name} — project poster`} contain={p.id === 'bastide-de-basson'} />
+        <PosterImg src={p.poster} alt={`${p.name} — project poster`} />
       </div>
     ));
 
@@ -129,9 +127,9 @@ export const SelectedWork: React.FC = () => {
         </span>
       </div>
 
-      {/* Mobile / tablet stage — always shows the panning screenshot */}
+      {/* Mobile / tablet stage — shows the current project's poster */}
       <div className="lg:hidden mb-10" data-reveal>
-        <div className="work-stage" style={{ aspectRatio: '16 / 10' }} data-cursor="View" onClick={() => navigate(`/work/${current.id}`)}>
+        <div className="work-stage" style={{ aspectRatio: '4 / 3' }} data-cursor="View" onClick={() => navigate(`/work/${current.id}`)}>
           {stageLayers(true)}
           {stageBar}
         </div>
@@ -217,14 +215,14 @@ export const SelectedWork: React.FC = () => {
         aria-hidden="true"
         className="pointer-events-none fixed left-0 top-0 hidden lg:block overflow-hidden"
         style={{
-          width: '360px', aspectRatio: '3 / 2', borderRadius: 'var(--radius-image)',
+          width: '320px', aspectRatio: '3 / 4', borderRadius: 'var(--radius-image)',
           zIndex: 60, opacity: 0, background: 'var(--color-surface)',
           boxShadow: '0 30px 60px rgba(0,0,0,0.45)',
         }}
       >
         {selectedProjects.map((p, i) => (
           <div key={p.id} className="absolute inset-0 transition-opacity duration-300" style={{ opacity: i === active ? 1 : 0 }}>
-            <PosterImg src={p.poster} alt="" contain={p.id === 'bastide-de-basson'} />
+            <PosterImg src={p.poster} alt="" />
           </div>
         ))}
       </div>

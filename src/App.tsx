@@ -28,7 +28,7 @@ interface VeilInfo { title: string; meta: string; }
 
 function routeInfo(pathname: string): VeilInfo {
   if (pathname === '/') return { title: 'HOME', meta: 'PORTFOLIO ©2026' };
-  if (pathname === '/work') return { title: 'WORK', meta: '12 PROJECTS' };
+  if (pathname === '/work') return { title: 'WORK', meta: '10 PROJECTS' };
   const wp = pathname.match(/^\/work\/(.+)$/);
   if (wp) return { title: (getProject(wp[1])?.name ?? 'Work').toUpperCase(), meta: 'CASE STUDY' };
   if (pathname === '/about') return { title: 'ABOUT', meta: 'SINCE 2022' };
@@ -176,10 +176,7 @@ const Shell: React.FC = () => {
       </main>
       <Footer />
 
-      <div className={info.meta !== 'CASE STUDY' ? 'veil veil--portrait' : 'veil'} data-phase={phase} aria-hidden="true">
-        {info.meta !== 'CASE STUDY' && (
-          <img src="/portrait-golden-rimlight.jpg" alt="" aria-hidden="true" className="veil__portrait" />
-        )}
+      <div className="veil" data-phase={phase} aria-hidden="true">
         <div className="veil__top">
           <span>(Next)</span>
           <span>{info.meta}</span>
