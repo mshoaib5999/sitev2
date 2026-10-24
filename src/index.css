@@ -13,7 +13,7 @@
   --color-faint: #86817a;
   --color-hairline: rgba(237, 234, 228, 0.12);
   --color-chip-border: rgba(237, 234, 228, 0.2);
-  --color-accent: #7fa8ff;
+  --color-accent: #ffc61a;
   --color-on-accent: #111010;
   --gutter: clamp(20px, 4vw, 56px);
   --page-top: clamp(120px, 18vh, 180px);
@@ -241,7 +241,7 @@ a.index-row:hover .index-row__name { transform: translateX(10px); color: var(--c
 }
 .cursor-dot { width: 6px; height: 6px; background: var(--color-accent); }
 .cursor-ring {
-  width: 34px; height: 34px; border: 1px solid rgba(127, 168, 255, 0.65);
+  width: 34px; height: 34px; border: 1px solid rgba(255, 198, 26, 0.65);
   transition: width 0.25s, height 0.25s, border-color 0.25s, opacity 0.2s;
 }
 .cursor-ring.is-hover { width: 56px; height: 56px; border-color: var(--color-accent); }

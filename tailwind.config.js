@@ -14,7 +14,7 @@ export default {
         subtle: "#a8a39b",
         label: "#8f8a82",
         faint: "#86817a",
-        accent: "#7fa8ff",
+        accent: "#ffc61a",
       },
       fontFamily: {
         sans: ["Archivo", "Arial", "sans-serif"],

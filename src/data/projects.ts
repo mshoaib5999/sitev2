@@ -8,12 +8,14 @@ export interface SelectedProject {
   url: string;
   image: string;
   detailImage: string;
+  pan: string;
   detailCaption: string;
 }
 
 export const selectedProjects: SelectedProject[] = [
   {
     id: 'bastide-de-basson',
+    pan: '/projects/pan-bastide-de-basson.jpg',
     name: 'Bastide de Basson',
     year: '2026',
     service: 'Hospitality website — design & build',
@@ -27,6 +29,7 @@ export const selectedProjects: SelectedProject[] = [
   },
   {
     id: 'phaselink',
+    pan: '/projects/pan-phaselink.jpg',
     name: 'PhaseLink',
     year: '2026',
     service: 'Corporate website — design & build',
@@ -40,6 +43,7 @@ export const selectedProjects: SelectedProject[] = [
   },
   {
     id: 'sole-survivors',
+    pan: '/projects/pan-sole-survivors.jpg',
     name: 'Sole Survivors',
     year: '2026',
     service: 'Community website — design & build',
@@ -53,6 +57,7 @@ export const selectedProjects: SelectedProject[] = [
   },
   {
     id: 'goldstar-learning',
+    pan: '/projects/pan-goldstar-learning.jpg',
     name: 'GoldStar Learning',
     year: '2026',
     service: 'Education website — design & build',
