@@ -1,12 +1,56 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { allProjects } from '../data/details';
 import { KineticText, useKinetic } from '../sections/Kinetic';
 
+// Posters for the 4 featured projects; the 8 archive rows fall back to
+// their own project image — so every row shows something on hover.
+const posterBySlug: Record<string, string> = {
+  'bastide-de-basson': '/projects/posters/poster-bastide-de-basson.jpg',
+  'phaselink': '/projects/posters/poster-phaselink.jpg',
+  'sole-survivors': '/projects/posters/poster-sole-survivors.jpg',
+  'goldstar-learning': '/projects/posters/poster-goldstar-learning.jpg',
+};
+const previewFor = (slug: string, image: string) => posterBySlug[slug] ?? image;
+
 export const WorkPage: React.FC = () => {
   const titleRef = useKinetic<HTMLHeadingElement>();
+  const [hovered, setHovered] = useState<number | null>(null);
+  const floatRef = useRef<HTMLDivElement>(null);
+  const pointer = useRef({ x: -600, y: -600 });
+
+  // Floating preview that trails the cursor over the rows, like the
+  // reference work page: poster (or project image) with a slight tilt.
+  useEffect(() => {
+    const el = floatRef.current;
+    if (!el) return;
+    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    let raf = 0;
+    let x = -600, y = -600, rot = 0, vis = 0;
+    const loop = () => {
+      const target = el.dataset.show === '1' ? 1 : 0;
+      vis += (target - vis) * 0.12;
+      const tx = pointer.current.x + 34;
+      const ty = pointer.current.y - 120;
+      const vx = (tx - x) * 0.16;
+      x += vx;
+      y += (ty - y) * 0.16;
+      rot += (Math.max(-8, Math.min(8, vx * 0.55)) - rot) * 0.1;
+      el.style.opacity = vis.toFixed(3);
+      el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) rotate(${rot.toFixed(2)}deg) scale(${(0.92 + vis * 0.08).toFixed(3)})`;
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
   return (
-  <div className="gutter" style={{ paddingTop: 'var(--page-top)', paddingBottom: '40px' }}>
+  <div
+    className="gutter"
+    style={{ paddingTop: 'var(--page-top)', paddingBottom: '40px' }}
+    onPointerMove={(e) => { pointer.current = { x: e.clientX, y: e.clientY }; }}
+    onPointerLeave={() => setHovered(null)}
+  >
     <div className="flex flex-wrap items-end justify-between gap-6 mb-4">
       <h1 ref={titleRef} className="page-huge fvs-display" data-reveal>
         <KineticText text="Work" />{' '}
@@ -28,7 +72,14 @@ export const WorkPage: React.FC = () => {
     <div>
       {allProjects.map((p, i) => (
         <div key={p.slug} data-reveal style={{ transitionDelay: `${Math.min(i, 5) * 60}ms` }}>
-          <Link to={`/work/${p.slug}`} className="work-index-row" data-hover data-cursor="View">
+          <Link
+            to={`/work/${p.slug}`}
+            className="work-index-row"
+            data-hover
+            data-cursor="View"
+            onMouseEnter={() => setHovered(i)}
+            onFocus={() => setHovered(i)}
+          >
             <span className="eyebrow pt-2">{String(i + 1).padStart(2, '0')}</span>
             <span className="work-index-row__name fvs-row">{p.name}</span>
             <span className="eyebrow hidden md:block">{p.service}</span>
@@ -43,6 +94,32 @@ export const WorkPage: React.FC = () => {
       ( Plus several hundred more sites for agencies and clients worldwide —{' '}
       <Link to="/contact" className="text-accent no-underline" data-hover>ask me about yours</Link> )
     </p>
+
+    {/* Floating preview — follows the cursor over the rows (desktop) */}
+    <div
+      ref={floatRef}
+      data-show={hovered !== null ? '1' : '0'}
+      aria-hidden="true"
+      className="pointer-events-none fixed left-0 top-0 hidden lg:block overflow-hidden"
+      style={{
+        width: '360px', aspectRatio: '3 / 2', borderRadius: 'var(--radius-image)',
+        zIndex: 60, opacity: 0, background: 'var(--color-surface)',
+        boxShadow: '0 30px 60px rgba(0,0,0,0.45)',
+      }}
+    >
+      {allProjects.map((p, i) => (
+        <div key={p.slug} className="absolute inset-0 transition-opacity duration-300" style={{ opacity: i === hovered ? 1 : 0 }}>
+          <img
+            src={previewFor(p.slug, p.image)}
+            alt=""
+            loading="lazy"
+            className="absolute inset-0 h-full w-full"
+            style={{ objectFit: 'cover' }}
+            draggable={false}
+          />
+        </div>
+      ))}
+    </div>
   </div>
   );
 };

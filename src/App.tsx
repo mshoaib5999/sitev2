@@ -177,11 +177,14 @@ const Shell: React.FC = () => {
       <Footer />
 
       <div className="veil" data-phase={phase} aria-hidden="true">
+        {info.meta !== 'CASE STUDY' && (
+          <img src="/portrait-golden.jpg" alt="" aria-hidden="true" className="veil__portrait" />
+        )}
         <div className="veil__top">
           <span>(Next)</span>
           <span>{info.meta}</span>
         </div>
-        <div>
+        <div className="veil__bottom">
           <div className="veil__title fvs-display" style={{ fontSize: veilTitleSize }}>{info.title}</div>
           <div className="veil__rule" />
         </div>
