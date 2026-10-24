@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { KineticText, useKinetic } from '../sections/Kinetic';
 
-export const PageHead: React.FC<{ title: React.ReactNode; intro?: string }> = ({ title, intro }) => (
-  <div className="gutter" style={{ paddingTop: 'var(--page-top)' }}>
-    <h1 className="page-huge fvs-display" data-reveal>{title}</h1>
-    {intro && (
-      <p className="text-muted mt-6 mb-0" style={{ fontSize: 'clamp(19px, 1.8vw, 25px)', lineHeight: 1.42, maxWidth: '42ch' }} data-reveal>
-        {intro}
-      </p>
-    )}
-  </div>
-);
+export const PageHead: React.FC<{ title: string; intro?: string }> = ({ title, intro }) => {
+  const titleRef = useKinetic<HTMLHeadingElement>();
+  return (
+    <div className="gutter" style={{ paddingTop: 'var(--page-top)' }}>
+      <h1 ref={titleRef} className="page-huge fvs-display" data-reveal><KineticText text={title} /></h1>
+      {intro && (
+        <p className="text-muted mt-6 mb-0" style={{ fontSize: 'clamp(19px, 1.8vw, 25px)', lineHeight: 1.42, maxWidth: '42ch' }} data-reveal>
+          {intro}
+        </p>
+      )}
+    </div>
+  );
+};
 
 export const FaqList: React.FC<{ items: { q: string; a: string }[] }> = ({ items }) => {
   const [open, setOpen] = useState(0);

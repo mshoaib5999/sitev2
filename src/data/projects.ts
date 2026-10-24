@@ -9,6 +9,8 @@ export interface SelectedProject {
   image: string;
   detailImage: string;
   pan: string;
+  embed: boolean;
+  liveHeight: number;
   detailCaption: string;
 }
 
@@ -16,6 +18,8 @@ export const selectedProjects: SelectedProject[] = [
   {
     id: 'bastide-de-basson',
     pan: '/projects/pan-bastide-de-basson.jpg',
+    embed: true,
+    liveHeight: 5400,
     name: 'Bastide de Basson',
     year: '2026',
     service: 'Hospitality website — design & build',
@@ -30,6 +34,8 @@ export const selectedProjects: SelectedProject[] = [
   {
     id: 'phaselink',
     pan: '/projects/pan-phaselink.jpg',
+    embed: true,
+    liveHeight: 6600,
     name: 'PhaseLink',
     year: '2026',
     service: 'Corporate website — design & build',
@@ -44,6 +50,8 @@ export const selectedProjects: SelectedProject[] = [
   {
     id: 'sole-survivors',
     pan: '/projects/pan-sole-survivors.jpg',
+    embed: false,
+    liveHeight: 5200,
     name: 'Sole Survivors',
     year: '2026',
     service: 'Community website — design & build',
@@ -58,6 +66,8 @@ export const selectedProjects: SelectedProject[] = [
   {
     id: 'goldstar-learning',
     pan: '/projects/pan-goldstar-learning.jpg',
+    embed: true,
+    liveHeight: 5800,
     name: 'GoldStar Learning',
     year: '2026',
     service: 'Education website — design & build',

@@ -52,16 +52,82 @@ const PanImage: React.FC<{ src: string; alt: string; active: boolean; eager?: bo
   );
 };
 
+/**
+ * The project's REAL website, live in a frame, auto-scrolling
+ * top → bottom → top. Scaled down from desktop width (1100px).
+ */
+const LivePreview: React.FC<{ url: string; pageHeight: number; title: string }> = ({ url, pageHeight, title }) => {
+  const frameRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    let raf = 0;
+    const start = performance.now() + 400;
+    const loop = (now: number) => {
+      const f = frameRef.current;
+      const inn = innerRef.current;
+      if (f && inn) {
+        const s = f.clientWidth / 1100;
+        const visibleH = f.clientHeight / s;
+        const overflow = Math.max(0, pageHeight - visibleH);
+        const cycle = 17000;
+        const p = ((now - start) % cycle) / cycle;
+        const tri = p < 0.5 ? p * 2 : 2 - p * 2;
+        const eased = tri * tri * (3 - 2 * tri);
+        inn.style.transform = `scale(${s}) translateY(${(-overflow * eased).toFixed(1)}px)`;
+      }
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
+  }, [pageHeight]);
+
+  return (
+    <div ref={frameRef} className="absolute inset-0 overflow-hidden" style={{ background: '#f7f5f0', pointerEvents: 'none' }} aria-hidden="true">
+      <div
+        ref={innerRef}
+        style={{ width: 1100, height: pageHeight, transformOrigin: '0 0', opacity: loaded ? 1 : 0, transition: 'opacity 0.7s ease' }}
+      >
+        <iframe
+          title={`${title} — live website preview`}
+          src={url}
+          width={1100}
+          height={pageHeight}
+          loading="lazy"
+          tabIndex={-1}
+          onLoad={() => setLoaded(true)}
+          sandbox="allow-scripts allow-same-origin"
+          style={{ border: 0, display: 'block', pointerEvents: 'none', background: '#f7f5f0' }}
+        />
+      </div>
+    </div>
+  );
+};
+
 type Zone = 'list' | 'stage' | null;
 
 export const SelectedWork: React.FC = () => {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [zone, setZone] = useState<Zone>(null);
+  const [inView, setInView] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const floatRef = useRef<HTMLDivElement>(null);
   const pointer = useRef({ x: -600, y: -600 });
   const navigate = useNavigate();
+
+  // Live website frames only load once the section is actually on screen.
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => { if (entries.some((e) => e.isIntersecting)) setInView(true); },
+      { rootMargin: '200px' }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   // Auto-cycle while the visitor isn't interacting.
   useEffect(() => {
@@ -103,7 +169,7 @@ export const SelectedWork: React.FC = () => {
   const current = selectedProjects[active];
   const stageShowsImage = zone !== 'list'; // idle or docked in the stage box
 
-  const stageLayers = (alwaysOn: boolean) =>
+  const stageLayers = (alwaysOn: boolean, live: boolean) =>
     selectedProjects.map((p, i) => (
       <div
         key={p.id}
@@ -111,7 +177,10 @@ export const SelectedWork: React.FC = () => {
         style={{ opacity: i === active && (alwaysOn || stageShowsImage) ? 1 : 0 }}
         aria-hidden={i !== active}
       >
-        <PanImage src={p.pan} alt={`${p.name} — full website, scrolling`} active={i === active && (alwaysOn || stageShowsImage)} eager={i === 0} />
+        <PanImage src={p.pan} alt={`${p.name} — website preview`} active={i === active && (alwaysOn || stageShowsImage)} eager={i === 0} />
+        {p.embed && live && i === active && (
+          <LivePreview url={p.url} pageHeight={p.liveHeight} title={p.name} />
+        )}
       </div>
     ));
 
@@ -165,7 +234,7 @@ export const SelectedWork: React.FC = () => {
       {/* Mobile / tablet stage — always shows the panning screenshot */}
       <div className="lg:hidden mb-10" data-reveal>
         <div className="work-stage" style={{ aspectRatio: '16 / 10' }} data-cursor="View" onClick={() => navigate(`/work/${current.id}`)}>
-          {stageLayers(true)}
+          {stageLayers(true, inView)}
           {stageBar}
         </div>
       </div>
@@ -212,7 +281,7 @@ export const SelectedWork: React.FC = () => {
             aria-label={`Open the ${current.name} case study`}
           >
             {bigNumber('clamp(120px, 11vw, 180px)')}
-            {stageLayers(false)}
+            {stageLayers(false, zone === 'stage')}
             {stageBar}
           </div>
           <div className="flex items-center gap-5 mt-5">
@@ -258,6 +327,9 @@ export const SelectedWork: React.FC = () => {
         {selectedProjects.map((p, i) => (
           <div key={p.id} className="absolute inset-0 transition-opacity duration-300" style={{ opacity: i === active ? 1 : 0 }}>
             <PanImage src={p.pan} alt="" active={zone === 'list' && i === active} />
+            {p.embed && zone === 'list' && i === active && (
+              <LivePreview url={p.url} pageHeight={p.liveHeight} title={p.name} />
+            )}
           </div>
         ))}
       </div>

@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { allProjects } from '../data/details';
+import { KineticText, useKinetic } from '../sections/Kinetic';
 
-export const WorkPage: React.FC = () => (
+export const WorkPage: React.FC = () => {
+  const titleRef = useKinetic<HTMLHeadingElement>();
+  return (
   <div className="gutter" style={{ paddingTop: 'var(--page-top)', paddingBottom: '40px' }}>
     <div className="flex flex-wrap items-end justify-between gap-6 mb-4">
-      <h1 className="page-huge fvs-display" data-reveal>
-        Work{' '}
+      <h1 ref={titleRef} className="page-huge fvs-display" data-reveal>
+        <KineticText text="Work" />{' '}
         <sup className="font-mono normal-case" style={{ fontSize: '15px', color: 'var(--color-accent)', letterSpacing: '0.06em', verticalAlign: 'super' }}>
           ( {String(allProjects.length).padStart(2, '0')} )
         </sup>
@@ -41,4 +44,5 @@ export const WorkPage: React.FC = () => (
       <Link to="/contact" className="text-accent no-underline" data-hover>ask me about yours</Link> )
     </p>
   </div>
-);
+  );
+};

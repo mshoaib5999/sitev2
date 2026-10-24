@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { contact } from '../data/projects';
+import { KineticText, useKinetic } from './Kinetic';
 
 export const Footer: React.FC = () => {
+  const bigRef = useKinetic<HTMLAnchorElement>({ radius: 560 });
   return (
     <footer id="contact" className="gutter" style={{ borderTop: '1px solid var(--color-hairline)', paddingTop: 'clamp(60px, 10vh, 110px)', paddingBottom: '36px' }}>
       <div className="eyebrow mb-6" data-reveal>Got something in mind?</div>
-      <Link to="/contact" className="footer__big fvs-display" data-reveal data-hover data-cursor="Let’s go" aria-label="Go to the contact page">
-        Let’s talk
+      <Link ref={bigRef} to="/contact" className="footer__big fvs-display" data-reveal data-hover data-cursor="Let’s go" aria-label="Go to the contact page">
+        <KineticText text="Let’s talk" />
       </Link>
       <div
         className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4 mt-14 pt-6"

@@ -2,10 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getProject, nextProject } from '../data/details';
 import { NextBlock } from './shared';
+import { KineticText, useKinetic } from '../sections/Kinetic';
 
 export const ProjectPage: React.FC = () => {
   const { slug = '' } = useParams();
   const project = getProject(slug);
+  const titleRef = useKinetic<HTMLHeadingElement>();
   const heroImgRef = useRef<HTMLImageElement>(null);
 
   // Slight parallax on the hero image, like the reference case studies.
@@ -48,7 +50,7 @@ export const ProjectPage: React.FC = () => {
     <article>
       <div className="gutter" style={{ paddingTop: 'var(--page-top)' }}>
         <Link to="/work" className="eyebrow no-underline hover:text-accent transition-colors" data-hover>← All work</Link>
-        <h1 className="case-title fvs-display mt-8" data-reveal>{project.name}</h1>
+        <h1 ref={titleRef} className="case-title fvs-display mt-8" data-reveal><KineticText text={project.name} /></h1>
         <div className="meta-grid" data-reveal>
           <div>
             <div className="eyebrow">Project</div>

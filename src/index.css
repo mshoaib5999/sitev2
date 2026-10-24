@@ -256,6 +256,42 @@ a.index-row:hover .index-row__name { transform: translateX(10px); color: var(--c
 }
 .cursor-badge.is-on .cursor-badge__inner { transform: translate(-50%, -50%) scale(1); }
 
+/* ————— (NEXT) page-transition veil ————— */
+.veil {
+  position: fixed; inset: 0; z-index: 130;
+  background: var(--color-accent); color: var(--color-on-accent);
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 26px var(--gutter) 36px;
+  transform: translateY(103%); visibility: hidden; pointer-events: none;
+}
+.veil[data-phase='pre'] { visibility: visible; transform: translateY(103%); }
+.veil[data-phase='in'] {
+  visibility: visible; transform: translateY(0);
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.veil[data-phase='hold'] { visibility: visible; transform: translateY(0); }
+.veil[data-phase='out'] {
+  visibility: visible; transform: translateY(-103%);
+  transition: transform 0.58s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.veil__top {
+  display: flex; justify-content: space-between;
+  font-family: "Geist Mono", monospace; font-size: 12px;
+  letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.8;
+}
+.veil__title {
+  text-transform: uppercase; white-space: nowrap; line-height: 0.86;
+  letter-spacing: -0.01em; padding: 0.04em 0; overflow: hidden;
+}
+.veil[data-phase='in'] .veil__title, .veil[data-phase='hold'] .veil__title {
+  animation: veil-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+}
+@keyframes veil-up {
+  from { transform: translateY(46%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.veil__rule { height: 1px; background: rgba(17, 16, 16, 0.55); margin-top: 26px; }
+
 /* ————— Inner pages ————— */
 .page-huge {
   text-transform: uppercase; line-height: 0.86; letter-spacing: -0.01em;

@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { getService, nextService } from '../data/services';
 import { allProjects } from '../data/details';
 import { FaqList, NextBlock } from './shared';
+import { KineticText, useKinetic } from '../sections/Kinetic';
 
 const relatedSlugs: Record<string, string[]> = {
   websites: ['bastide-de-basson', 'phaselink'],
@@ -14,6 +15,7 @@ const relatedSlugs: Record<string, string[]> = {
 export const ServicePage: React.FC = () => {
   const { slug = '' } = useParams();
   const service = getService(slug);
+  const titleRef = useKinetic<HTMLHeadingElement>();
 
   if (!service) {
     return (
@@ -31,7 +33,7 @@ export const ServicePage: React.FC = () => {
     <article>
       <div className="gutter" style={{ paddingTop: 'var(--page-top)' }}>
         <Link to="/services" className="eyebrow no-underline hover:text-accent transition-colors" data-hover>← All services</Link>
-        <h1 className="case-title fvs-display mt-8" data-reveal>{service.title}</h1>
+        <h1 ref={titleRef} className="case-title fvs-display mt-8" data-reveal><KineticText text={service.title} /></h1>
         <p className="m-0 font-medium mt-8" style={{ fontSize: 'clamp(24px, 3vw, 44px)', lineHeight: 1.15, maxWidth: '22em' }} data-reveal>
           {service.tagline}
         </p>
