@@ -294,16 +294,12 @@ a.index-row:hover .index-row__name { transform: translateX(10px); color: var(--c
 @media (hover: hover) and (pointer: fine) {
   .cursor-dot, .cursor-ring, .cursor-badge { display: flex; }
 }
-.cursor-smoke { position: fixed; inset: 0; z-index: 45; pointer-events: none; mix-blend-mode: screen; display: none; }
-@media (hover: hover) and (pointer: fine) { .cursor-smoke { display: block; } }
-.cursor-dot { width: 6px; height: 6px; background: var(--color-accent); transition: width 0.18s ease, height 0.18s ease, opacity 0.2s; }
-.cursor-dot.is-down { width: 11px; height: 11px; }
+.cursor-dot { width: 6px; height: 6px; background: var(--color-accent); }
 .cursor-ring {
   width: 34px; height: 34px; border: 1px solid rgba(255, 198, 26, 0.65);
   transition: width 0.25s, height 0.25s, border-color 0.25s, opacity 0.2s;
 }
-.cursor-ring.is-hover { width: 56px; height: 56px; border-color: var(--color-accent); background: rgba(255, 198, 26, 0.07); }
-.cursor-ring.is-down { width: 26px; height: 26px; border-color: var(--color-accent); background: rgba(255, 198, 26, 0.14); }
+.cursor-ring.is-hover { width: 56px; height: 56px; border-color: var(--color-accent); }
 .cursor-badge { align-items: center; justify-content: center; }
 .cursor-badge__inner {
   width: 78px; height: 78px; border-radius: 50%;
