@@ -81,14 +81,6 @@ export const SelectedWork: React.FC = () => {
       </div>
     ));
 
-  const stageBar = (
-    <div className="work-stage__bar">
-      <span>{String(active + 1).padStart(2, '0')} / {current.place}</span>
-      <a href={current.url} target="_blank" rel="noopener noreferrer" className="text-ink no-underline hover:text-accent transition-colors" data-hover onClick={(e) => e.stopPropagation()}>
-        Visit live site ↗
-      </a>
-    </div>
-  );
 
   const bigNumber = (size: string) => (
     <span
@@ -132,7 +124,6 @@ export const SelectedWork: React.FC = () => {
         <div className="work-stage" style={{ aspectRatio: '1111 / 1400' }} data-cursor="View" onClick={() => navigate(`/work/${current.id}`)}>
           {stageLayers(true)}
         </div>
-        {stageBar}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_minmax(340px,440px)] gap-10 items-start">
@@ -179,8 +170,7 @@ export const SelectedWork: React.FC = () => {
             {bigNumber('clamp(120px, 11vw, 180px)')}
             {stageLayers(false)}
           </div>
-          {stageBar}
-          <div className="flex items-center gap-5 mt-5">
+            <div className="flex items-center gap-5 mt-5">
             <span className="eyebrow" style={{ color: 'var(--color-text)' }}>
               ( {String(active + 1).padStart(2, '0')} / {String(selectedProjects.length).padStart(2, '0')} )
             </span>
@@ -204,7 +194,6 @@ export const SelectedWork: React.FC = () => {
             </div>
             <span className="eyebrow hidden sm:block">{current.name}</span>
           </div>
-          <p className="text-muted leading-relaxed mt-5 text-[15px]">{current.description}</p>
         </div>
       </div>
 
