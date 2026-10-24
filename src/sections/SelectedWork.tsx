@@ -82,7 +82,7 @@ export const SelectedWork: React.FC = () => {
     ));
 
   const stageBar = (
-    <div className="work-stage__bar" style={{ zIndex: 3 }}>
+    <div className="work-stage__bar">
       <span>{String(active + 1).padStart(2, '0')} / {current.place}</span>
       <a href={current.url} target="_blank" rel="noopener noreferrer" className="text-ink no-underline hover:text-accent transition-colors" data-hover onClick={(e) => e.stopPropagation()}>
         Visit live site ↗
@@ -129,10 +129,10 @@ export const SelectedWork: React.FC = () => {
 
       {/* Mobile / tablet stage — shows the current project's poster */}
       <div className="lg:hidden mb-10" data-reveal>
-        <div className="work-stage" style={{ aspectRatio: '4 / 5' }} data-cursor="View" onClick={() => navigate(`/work/${current.id}`)}>
+        <div className="work-stage" style={{ aspectRatio: '1111 / 1400' }} data-cursor="View" onClick={() => navigate(`/work/${current.id}`)}>
           {stageLayers(true)}
-          {stageBar}
         </div>
+        {stageBar}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_minmax(340px,440px)] gap-10 items-start">
@@ -178,8 +178,8 @@ export const SelectedWork: React.FC = () => {
           >
             {bigNumber('clamp(120px, 11vw, 180px)')}
             {stageLayers(false)}
-            {stageBar}
           </div>
+          {stageBar}
           <div className="flex items-center gap-5 mt-5">
             <span className="eyebrow" style={{ color: 'var(--color-text)' }}>
               ( {String(active + 1).padStart(2, '0')} / {String(selectedProjects.length).padStart(2, '0')} )
