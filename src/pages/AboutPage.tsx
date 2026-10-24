@@ -4,12 +4,7 @@ import { PageHead } from './shared';
 import { experience } from '../data/projects';
 import { RevealWords } from '../sections/RevealWords';
 import { Skills } from '../sections/Skills';
-
-const approach = [
-  { title: 'Design & code, one pair of hands', text: 'What you approve in Figma is what ends up in the browser — because the same person designs it and builds it. Nothing gets lost in translation.' },
-  { title: 'Motion with a job to do', text: 'Movement should help people find their way, not get in it. Every animation earns its place: it explains, guides or delights — briefly.' },
-  { title: 'Fast is a feature', text: 'I test on real devices and real connections. Core Web Vitals in the green is not a bonus round, it is the baseline every build ships with.' },
-];
+import { HowIWork } from '../sections/HowIWork';
 
 export const AboutPage: React.FC = () => (
   <div>
@@ -54,8 +49,6 @@ export const AboutPage: React.FC = () => (
       </div>
     </div>
 
-    <Skills />
-
     <div className="gutter grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 mt-24" style={{ borderTop: '1px solid var(--color-hairline)' }} data-reveal>
       {[
         { big: '400+', small: 'Websites delivered' },
@@ -69,18 +62,9 @@ export const AboutPage: React.FC = () => (
       ))}
     </div>
 
-    <div className="gutter mt-28">
-      <h2 className="eyebrow m-0 mb-8" style={{ color: 'var(--color-accent)', fontSize: '13px' }} data-reveal>( How I work )</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-        {approach.map((a, i) => (
-          <div key={a.title} className="pt-6" style={{ borderTop: '1px solid var(--color-hairline)' }} data-reveal>
-            <div className="eyebrow mb-4" style={{ color: 'var(--color-accent)' }}>{String(i + 1).padStart(2, '0')}</div>
-            <h3 className="fvs-row m-0" style={{ fontSize: 'clamp(21px, 1.9vw, 27px)', lineHeight: 1.08 }}>{a.title}</h3>
-            <p className="text-muted mt-3 mb-0 leading-relaxed text-[15px]">{a.text}</p>
-          </div>
-        ))}
-      </div>
-    </div>
+    <Skills />
+
+    <HowIWork />
 
     <div className="gutter mt-28">
       <h2 className="eyebrow m-0 mb-4" style={{ color: 'var(--color-accent)', fontSize: '13px' }} data-reveal>( Career )</h2>

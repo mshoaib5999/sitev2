@@ -32,7 +32,7 @@ function routeInfo(pathname: string): VeilInfo {
   const wp = pathname.match(/^\/work\/(.+)$/);
   if (wp) return { title: (getProject(wp[1])?.name ?? 'Work').toUpperCase(), meta: 'CASE STUDY' };
   if (pathname === '/about') return { title: 'ABOUT', meta: 'SINCE 2022' };
-  if (pathname === '/services') return { title: 'SERVICES', meta: '4 SERVICES' };
+  if (pathname === '/services') return { title: 'SERVICES', meta: '9 SERVICES' };
   const sp = pathname.match(/^\/services\/(.+)$/);
   if (sp) return { title: (getService(sp[1])?.title ?? 'Services').toUpperCase(), meta: 'SERVICE' };
   if (pathname === '/contact') return { title: 'SAY HI', meta: 'GET IN TOUCH' };

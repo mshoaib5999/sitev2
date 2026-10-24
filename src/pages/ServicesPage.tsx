@@ -11,7 +11,7 @@ const generalFaqs = [
 
 export const ServicesPage: React.FC = () => (
   <div>
-    <PageHead title="Services" intro="Four things I do a lot of. Most projects end up being a mix — what matters is that design, build and speed all come from the same hands." />
+    <PageHead title="Services" intro="Nine services, one pair of hands. Most projects end up being a mix — what matters is that design, build and speed all come from the same person." />
 
     <div className="gutter" style={{ marginTop: 'clamp(30px, 6vh, 60px)' }}>
       {services.map((s) => (

@@ -9,7 +9,7 @@ export const Services: React.FC = () => {
         <h2 className="eyebrow m-0" style={{ color: 'var(--color-text)', fontSize: '13px' }}>What I do</h2>
         <Link to="/services" className="eyebrow no-underline hover:text-accent transition-colors" data-hover>All services →</Link>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         {services.map((t) => (
           <Link key={t.slug} to={`/services/${t.slug}`} className="tile" data-reveal data-hover data-cursor="Open">
             <div className="tile__fill" />
