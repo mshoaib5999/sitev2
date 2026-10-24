@@ -61,6 +61,14 @@ const LivePreview: React.FC<{ url: string; pageHeight: number; title: string }> 
   const innerRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
 
+  // Heavy WordPress pages can keep the load event hostage behind one slow
+  // asset long after the page itself has painted — so fade in after 20s
+  // even if load hasn't fired yet.
+  useEffect(() => {
+    const t = window.setTimeout(() => setLoaded(true), 20000);
+    return () => window.clearTimeout(t);
+  }, []);
+
   useEffect(() => {
     let raf = 0;
     const start = performance.now() + 400;
@@ -84,7 +92,10 @@ const LivePreview: React.FC<{ url: string; pageHeight: number; title: string }> 
   }, [pageHeight]);
 
   return (
-    <div ref={frameRef} className="absolute inset-0 overflow-hidden" style={{ background: '#f7f5f0', pointerEvents: 'none' }} aria-hidden="true">
+    // Transparent wrapper on purpose: while the live site is still loading,
+    // the scrolling screenshot strip underneath stays visible — never a
+    // blank box. Once the iframe fires load, it fades in over the strip.
+    <div ref={frameRef} className="absolute inset-0 overflow-hidden" style={{ pointerEvents: 'none' }} aria-hidden="true">
       <div
         ref={innerRef}
         style={{ width: 1100, height: pageHeight, transformOrigin: '0 0', opacity: loaded ? 1 : 0, transition: 'opacity 0.7s ease' }}
@@ -94,11 +105,10 @@ const LivePreview: React.FC<{ url: string; pageHeight: number; title: string }> 
           src={url}
           width={1100}
           height={pageHeight}
-          loading="lazy"
           tabIndex={-1}
           onLoad={() => setLoaded(true)}
           sandbox="allow-scripts allow-same-origin"
-          style={{ border: 0, display: 'block', pointerEvents: 'none', background: '#f7f5f0' }}
+          style={{ border: 0, display: 'block', pointerEvents: 'none' }}
         />
       </div>
     </div>

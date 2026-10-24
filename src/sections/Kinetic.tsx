@@ -27,6 +27,8 @@ export function useKinetic<T extends HTMLElement>(opts?: { settle?: boolean; rad
     }
 
     const cur = letters.map(() => ({ ...(settle ? K_SLIM : K_BASE) }));
+    // Track the pointer on the window, not just on the title element:
+    // overlays (cursor badge, header, veil) must never swallow the signal.
     const pointer = { x: -9999, y: -9999, inside: false };
     const born = performance.now() + (settle ? 1150 : 0);
     let raf = 0;
@@ -37,8 +39,9 @@ export function useKinetic<T extends HTMLElement>(opts?: { settle?: boolean; rad
       pointer.inside = true;
     };
     const onLeave = () => { pointer.inside = false; };
-    root.addEventListener('pointermove', onMove);
-    root.addEventListener('pointerleave', onLeave);
+    window.addEventListener('pointermove', onMove, { passive: true });
+    document.documentElement.addEventListener('pointerleave', onLeave);
+    window.addEventListener('blur', onLeave);
 
     const loop = (now: number) => {
       const rect = root.getBoundingClientRect();
@@ -70,8 +73,9 @@ export function useKinetic<T extends HTMLElement>(opts?: { settle?: boolean; rad
     raf = requestAnimationFrame(loop);
     return () => {
       cancelAnimationFrame(raf);
-      root.removeEventListener('pointermove', onMove);
-      root.removeEventListener('pointerleave', onLeave);
+      window.removeEventListener('pointermove', onMove);
+      document.documentElement.removeEventListener('pointerleave', onLeave);
+      window.removeEventListener('blur', onLeave);
     };
   }, [settle, radius]);
 
