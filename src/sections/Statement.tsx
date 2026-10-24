@@ -97,7 +97,7 @@ export const Statement: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8" style={{ borderTop: '1px solid var(--color-hairline)' }} data-reveal>
         {[
           { big: '400+', small: 'Websites delivered' },
-          { big: '3.5+', small: 'Years of experience' },
+          { big: '4+', small: 'Years of experience' },
           { big: '12+', small: 'Industries — real estate to AI' },
         ].map((s) => (
           <div key={s.small}>

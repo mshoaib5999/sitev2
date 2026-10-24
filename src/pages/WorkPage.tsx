@@ -4,6 +4,7 @@ import { allProjects } from '../data/details';
 import { KineticText, useKinetic } from '../sections/Kinetic';
 
 import { posterFor as previewFor } from '../data/posters';
+import { Industries } from '../sections/Industries';
 
 export const WorkPage: React.FC = () => {
   const titleRef = useKinetic<HTMLHeadingElement>();
@@ -86,6 +87,8 @@ export const WorkPage: React.FC = () => {
       ( Plus several hundred more sites for agencies and clients worldwide —{' '}
       <Link to="/contact" className="text-accent no-underline" data-hover>ask me about yours</Link> )
     </p>
+
+    <Industries />
 
     {/* Floating preview — follows the cursor over the rows (desktop) */}
     <div
