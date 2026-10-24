@@ -114,7 +114,7 @@ export const WorkPage: React.FC = () => {
             alt=""
             loading="lazy"
             className="absolute inset-0 h-full w-full"
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: p.slug === 'bastide-de-basson' ? 'contain' : 'cover' }}
             draggable={false}
           />
         </div>

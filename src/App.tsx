@@ -178,7 +178,7 @@ const Shell: React.FC = () => {
 
       <div className={info.meta !== 'CASE STUDY' ? 'veil veil--portrait' : 'veil'} data-phase={phase} aria-hidden="true">
         {info.meta !== 'CASE STUDY' && (
-          <img src="/portrait-golden.jpg" alt="" aria-hidden="true" className="veil__portrait" />
+          <img src="/portrait-golden-rimlight.jpg" alt="" aria-hidden="true" className="veil__portrait" />
         )}
         <div className="veil__top">
           <span>(Next)</span>

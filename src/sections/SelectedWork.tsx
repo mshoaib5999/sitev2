@@ -6,14 +6,16 @@ import { selectedProjects } from '../data/projects';
  * The project's poster (desktop + mobile mockup). Static on purpose:
  * no scrolling website, no iframe — just the poster, instantly visible.
  */
-const PosterImg: React.FC<{ src: string; alt: string }> = ({ src, alt }) => (
+// Bastide's new poster is portrait, so it shows whole (contain) instead of
+// being cropped to the landscape frames; the landscape posters fill (cover).
+const PosterImg: React.FC<{ src: string; alt: string; contain?: boolean }> = ({ src, alt, contain }) => (
   <div className="absolute inset-0 overflow-hidden">
     <img
       src={src}
       alt={alt}
       loading="lazy"
       className="absolute inset-0 h-full w-full"
-      style={{ objectFit: 'cover' }}
+      style={{ objectFit: contain ? 'contain' : 'cover' }}
       draggable={false}
     />
   </div>
@@ -77,7 +79,7 @@ export const SelectedWork: React.FC = () => {
         style={{ opacity: i === active && (alwaysOn || stageShowsImage) ? 1 : 0 }}
         aria-hidden={i !== active}
       >
-        <PosterImg src={p.poster} alt={`${p.name} — project poster`} />
+        <PosterImg src={p.poster} alt={`${p.name} — project poster`} contain={p.id === 'bastide-de-basson'} />
       </div>
     ));
 
@@ -222,7 +224,7 @@ export const SelectedWork: React.FC = () => {
       >
         {selectedProjects.map((p, i) => (
           <div key={p.id} className="absolute inset-0 transition-opacity duration-300" style={{ opacity: i === active ? 1 : 0 }}>
-            <PosterImg src={p.poster} alt="" />
+            <PosterImg src={p.poster} alt="" contain={p.id === 'bastide-de-basson'} />
           </div>
         ))}
       </div>
