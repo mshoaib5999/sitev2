@@ -11,8 +11,9 @@ import React from 'react';
  */
 
 const Pin: React.FC = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ width: '30px', height: '30px', color: 'var(--color-accent)', margin: '2px auto 14px' }}>
-    <path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1-.883.993l-.117.007h-4v4a1 1 0 0 1-1.993.117L7 21v-4H3a1 1 0 0 1-.993-.883L2 16v-2a1 1 0 0 1 .06-.34l.046-.107L4 9.762V5a1 1 0 0 1-.117-1.993L4 3h12z" />
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ width: '34px', height: '34px', color: 'var(--color-accent)', margin: '6px auto 12px', display: 'block', filter: 'drop-shadow(0 3px 4px rgba(0,0,0,0.45))' }}>
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z" />
   </svg>
 );
 
@@ -21,28 +22,28 @@ const steps = [
     kicker: 'Goals before code',
     title: 'Discovery & Strategy',
     text: 'We start with your goals, not a template. Whether it\u2019s WordPress development, a WooCommerce or Shopify store, a redesign or a migration \u2014 we map the pages, features and timeline first, and you get honest advice on what will actually win you clients.',
-    pos: 'md:top-0 md:left-[11%]',
+    pos: 'md:top-0 md:left-[10%]',
     rotate: 'rotate-[7deg]',
   },
   {
     kicker: 'Pixel-perfect, always',
     title: 'Design & Build',
     text: 'Your Figma design becomes a hand-built site \u2014 a custom WordPress theme with Elementor Pro and ACF Pro, or a Shopify, Wix or GoHighLevel build. The design you approve is exactly what your visitors get, on every screen.',
-    pos: 'md:top-[185px] md:right-[11%]',
+    pos: 'md:top-[210px] md:right-[10%]',
     rotate: '-rotate-[7deg]',
   },
   {
     kicker: 'Speed is non-negotiable',
     title: 'Performance & Polish',
     text: 'Every build is tuned for PageSpeed and green Core Web Vitals, with on-page SEO and clean, secure code baked in \u2014 because a slow site quietly costs you the very clients you already won.',
-    pos: 'md:top-[455px] md:left-[11%]',
+    pos: 'md:top-[470px] md:left-[10%]',
     rotate: 'rotate-[7deg]',
   },
   {
     kicker: 'Launch is the start',
     title: 'Launch & Support',
     text: 'I handle the go-live and any migration, test everything twice, and stay on afterwards \u2014 updates, backups, tweaks and growth \u2014 so your site keeps working for you long after launch day.',
-    pos: 'md:top-[640px] md:right-[9%]',
+    pos: 'md:top-[690px] md:right-[9%]',
     rotate: '-rotate-[7deg]',
   },
 ];
@@ -58,18 +59,18 @@ export const HowIWork: React.FC = () => (
       </p>
     </div>
 
-    <div className="relative">
+    <div className="relative" style={{ marginBottom: '100px' }}>
       {/* ruled-notebook lines, like the reference */}
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '100% 32px', marginTop: '4px' }} />
       <div aria-hidden="true" className="absolute inset-y-0 left-0 w-1/3 pointer-events-none" style={{ background: 'linear-gradient(to right, var(--color-bg), transparent)' }} />
       <div aria-hidden="true" className="absolute inset-y-0 right-0 w-1/3 pointer-events-none" style={{ background: 'linear-gradient(to left, var(--color-bg), transparent)' }} />
 
-      <div className="relative z-10 max-w-[1000px] mx-auto flex flex-col space-y-8 md:space-y-0 md:block md:h-[900px]">
+      <div className="relative z-10 max-w-[1200px] mx-auto flex flex-col space-y-8 md:space-y-0 md:block md:h-[1150px]">
         {/* winding dashed path (desktop) */}
-        <svg className="absolute top-0 left-0 w-full h-full pointer-events-none hidden md:block" viewBox="0 0 1000 900" preserveAspectRatio="none" aria-hidden="true">
+        <svg className="absolute top-0 left-0 w-full h-full pointer-events-none hidden md:block" viewBox="0 0 1200 1150" preserveAspectRatio="none" aria-hidden="true">
           <path
             className="how-path-line"
-            d="M 300 120 C 500 120, 560 260, 690 260 C 830 260, 470 350, 300 450 C 300 590, 540 700, 710 700"
+            d="M 340 130 C 570 130, 650 300, 800 300 C 970 300, 550 430, 340 550 C 340 730, 630 870, 820 870"
             fill="none"
             strokeLinecap="round"
             vectorEffect="non-scaling-stroke"
@@ -82,7 +83,7 @@ export const HowIWork: React.FC = () => (
             className={`relative w-full md:w-[290px] md:absolute transition-transform duration-300 hover:z-30 hover:scale-105 ${s.pos} ${s.rotate}`}
             data-reveal
           >
-            <div style={{ background: '#1a1919', border: '1px solid rgba(255,255,255,0.09)', borderRadius: '25px', padding: '8px', boxShadow: '0 18px 36px -18px rgba(0,0,0,0.65)' }}>
+            <div style={{ background: '#1a1919', border: '1px solid rgba(255,255,255,0.09)', borderRadius: '25px', padding: '10px', boxShadow: '0 18px 36px -18px rgba(0,0,0,0.65)' }}>
               <Pin />
               <div style={{ background: 'rgba(255,198,26,0.055)', border: '1px solid rgba(255,198,26,0.22)', borderRadius: '15px', padding: '18px' }}>
                 <span className="font-hand" style={{ color: 'var(--color-accent)', fontSize: '40px', lineHeight: 1, display: 'block', marginBottom: '14px' }}>
