@@ -248,7 +248,8 @@ a.index-row:hover .index-row__name { transform: translateX(10px); color: var(--c
 /* ————— BorderBeam (components/ui/border-beam) ————— */
 @property --border-beam-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
 @keyframes border-beam { to { --border-beam-angle: 360deg; } }
-.animate-border-beam { animation: border-beam var(--border-beam-duration, 5s) linear infinite; animation-delay: var(--border-beam-delay, 0s); }
+.beam-ring { animation: border-beam var(--border-beam-duration, 5s) linear infinite; animation-delay: var(--border-beam-delay, 0s); }
+@media (prefers-reduced-motion: reduce) { .beam-ring { display: none; } }
 
 /* ————— Portrait card + magic-border stat panels ————— */
 .portrait-card { padding: 10px; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; background: rgba(255, 255, 255, 0.03); box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.55); }
@@ -261,23 +262,10 @@ a.index-row:hover .index-row__name { transform: translateX(10px); color: var(--c
 .magic-cell { background: #151414; padding: 28px 18px; text-align: center; transition: background 0.3s ease; }
 .magic-cell:hover { background: #1b1a1a; }
 
-/* ————— Process journey (About — How I work) ————— */
-.process-journey { position: relative; }
-.process-line { position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); width: 72px; height: 100%; display: none; }
-.process-line path { stroke: rgba(255, 198, 26, 0.25); stroke-width: 1.2; stroke-dasharray: 3 7; }
-@media (min-width: 1024px) { .process-line { display: block; } }
-.process-row { position: relative; display: flex; margin-bottom: 34px; }
-.process-row:last-child { margin-bottom: 0; }
-.process-card { position: relative; overflow: hidden; width: 100%; border: 1px solid var(--color-hairline); border-radius: 18px; background: rgba(255, 255, 255, 0.02); padding: clamp(24px, 2.6vw, 34px); transition: border-color 0.35s ease, background 0.35s ease, transform 0.35s ease; }
-.process-card:hover { border-color: rgba(255, 198, 26, 0.45); background: rgba(255, 255, 255, 0.035); transform: translateY(-3px); }
-.process-card__icon { position: absolute; top: -14px; right: -14px; width: 128px; height: 128px; color: var(--color-accent); opacity: 0.07; transform: rotate(10deg); pointer-events: none; transition: opacity 0.35s ease; }
-.process-card:hover .process-card__icon { opacity: 0.13; }
-.process-dot { display: none; }
-@media (min-width: 1024px) {
-  .process-card { width: 41%; }
-  .process-row.is-right { justify-content: flex-end; }
-  .process-dot { display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 11px; height: 11px; border-radius: 50%; background: var(--color-accent); box-shadow: 0 0 0 5px var(--color-bg); z-index: 2; }
-}
+/* ————— How I work (pinned notes + winding dashed path) ————— */
+.font-hand { font-family: 'Caveat', 'Comic Sans MS', cursive; font-weight: 600; }
+.how-path-line { stroke: rgba(255, 198, 26, 0.35); stroke-width: 2; stroke-dasharray: 8 6; animation: dash-drift 3s linear infinite; }
+@keyframes dash-drift { to { stroke-dashoffset: -140; } }
 
 /* ————— Industries grid (Work) ————— */
 .industry-grid { border-top: 1px solid var(--color-hairline); border-left: 1px solid var(--color-hairline); }

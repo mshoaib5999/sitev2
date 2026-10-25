@@ -1,49 +1,55 @@
 import React from 'react';
 
 /**
- * How I work — a process journey in the layout the user supplied
- * (alternating step cards along a winding centre line, each card with
- * STEP number, a small caps label, a big title, copy, and a faint
- * oversized icon in the corner), restyled to this site's branding
- * and written to win clients.
+ * How I work — rebuilt from the supplied "HowItWorks" pinned-notes
+ * component (tilted note cards along a winding animated dashed path),
+ * restyled to this site's branding (charcoal + gold, no colour themes)
+ * and reworded around Shoaib's actual services. The original used the
+ * `motion` package only to loop the dashed path; here that loop is a
+ * CSS keyframe on stroke-dashoffset — same motion, no extra dependency.
+ * Card numbers use the Caveat handwriting font, like the reference.
  */
 
-const G = (paths: React.ReactNode) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ width: '100%', height: '100%' }}>
-    {paths}
+const Pin: React.FC = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ width: '30px', height: '30px', color: 'var(--color-accent)', margin: '2px auto 14px' }}>
+    <path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1-.883.993l-.117.007h-4v4a1 1 0 0 1-1.993.117L7 21v-4H3a1 1 0 0 1-.993-.883L2 16v-2a1 1 0 0 1 .06-.34l.046-.107L4 9.762V5a1 1 0 0 1-.117-1.993L4 3h12z" />
   </svg>
 );
 
 const steps = [
   {
-    label: 'Goals before code',
+    kicker: 'Goals before code',
     title: 'Discovery & Strategy',
-    text: 'Every project starts with your business goals, not a template. We map who the site is for, what it must achieve and how success will be measured — before a single pixel is placed. You get honest advice on what will actually move the needle, even when the answer is “you don’t need that”.',
-    icon: G(<><circle cx="12" cy="12" r="8.5" /><circle cx="12" cy="12" r="4.6" /><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none" /></>),
+    text: 'We start with your goals, not a template. Whether it\u2019s WordPress development, a WooCommerce or Shopify store, a redesign or a migration \u2014 we map the pages, features and timeline first, and you get honest advice on what will actually win you clients.',
+    pos: 'md:top-0 md:left-[11%]',
+    rotate: 'rotate-[7deg]',
   },
   {
-    label: 'Pixel-perfect, always',
+    kicker: 'Pixel-perfect, always',
     title: 'Design & Build',
-    text: 'The design you approve is the site you get — built pixel-perfect in clean, hand-written code, not dragged together from bloated builders. No lost details and no “close enough”: what you signed off is exactly what your visitors see.',
-    icon: G(<><path d="M8 6 L2.5 12 L8 18" /><path d="M16 6 L21.5 12 L16 18" /><path d="M13.5 4.5 L10.5 19.5" /></>),
+    text: 'Your Figma design becomes a hand-built site \u2014 a custom WordPress theme with Elementor Pro and ACF Pro, or a Shopify, Wix or GoHighLevel build. The design you approve is exactly what your visitors get, on every screen.',
+    pos: 'md:top-[185px] md:right-[11%]',
+    rotate: '-rotate-[7deg]',
   },
   {
-    label: 'Speed is non-negotiable',
+    kicker: 'Speed is non-negotiable',
     title: 'Performance & Polish',
-    text: 'Fast is a feature your customers can feel. Every build is tuned until Core Web Vitals are green and pages snap open on real phones, on real connections — because a slow site quietly costs you the very clients you already won.',
-    icon: G(<><path d="M4 15 a8 8 0 1 1 16 0" /><path d="M12 15 L15.5 9.5" /><path d="M3 19 h18" /></>),
+    text: 'Every build is tuned for PageSpeed and green Core Web Vitals, with on-page SEO and clean, secure code baked in \u2014 because a slow site quietly costs you the very clients you already won.',
+    pos: 'md:top-[455px] md:left-[11%]',
+    rotate: 'rotate-[7deg]',
   },
   {
-    label: 'Launch is the start',
+    kicker: 'Launch is the start',
     title: 'Launch & Support',
-    text: 'Going live is the beginning, not the handover-and-goodbye. I launch, monitor and stay available — fixes, tweaks and growth included — so your site keeps winning work long after launch day. Most of my clients come back for their next project; that is the standard I work to.',
-    icon: G(<><circle cx="12" cy="12" r="8.5" /><path d="M12 16.5 V8" /><path d="M7.8 11.8 L12 7.6 L16.2 11.8" /></>),
+    text: 'I handle the go-live and any migration, test everything twice, and stay on afterwards \u2014 updates, backups, tweaks and growth \u2014 so your site keeps working for you long after launch day.',
+    pos: 'md:top-[640px] md:right-[9%]',
+    rotate: '-rotate-[7deg]',
   },
 ];
 
 export const HowIWork: React.FC = () => (
   <div className="gutter mt-28">
-    <div className="text-center">
+    <div className="text-center relative z-10">
       <h2 className="eyebrow m-0 mb-5" style={{ color: 'var(--color-accent)', fontSize: '13px' }} data-reveal>( Process )</h2>
       <div className="fvs-display uppercase m-0 leading-none" style={{ fontSize: 'clamp(46px, 6.5vw, 92px)' }} data-reveal>How I work</div>
       <p className="text-muted mt-6 mb-14 mx-auto" style={{ fontSize: '17px', lineHeight: 1.65, maxWidth: '54ch' }} data-reveal>
@@ -52,30 +58,46 @@ export const HowIWork: React.FC = () => (
       </p>
     </div>
 
-    <div className="process-journey">
-      {/* Winding centre line (desktop) */}
-      <svg className="process-line" viewBox="0 0 100 1000" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M50,0 C68,140 32,300 50,470 C68,640 32,800 50,1000" fill="none" vectorEffect="non-scaling-stroke" />
-      </svg>
+    <div className="relative">
+      {/* ruled-notebook lines, like the reference */}
+      <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '100% 32px', marginTop: '4px' }} />
+      <div aria-hidden="true" className="absolute inset-y-0 left-0 w-1/3 pointer-events-none" style={{ background: 'linear-gradient(to right, var(--color-bg), transparent)' }} />
+      <div aria-hidden="true" className="absolute inset-y-0 right-0 w-1/3 pointer-events-none" style={{ background: 'linear-gradient(to left, var(--color-bg), transparent)' }} />
 
-      {steps.map((s, i) => (
-        <div key={s.title} className={`process-row ${i % 2 === 1 ? 'is-right' : ''}`}>
-          <span className="process-dot" aria-hidden="true" />
-          <article className="process-card" data-reveal data-hover>
-            <div className="process-card__icon" aria-hidden="true">{s.icon}</div>
-            <div className="relative">
-              <div className="font-mono uppercase" style={{ fontSize: '10px', letterSpacing: '0.14em', color: 'var(--color-faint)' }}>
-                Step {String(i + 1).padStart(2, '0')}
+      <div className="relative z-10 max-w-[1000px] mx-auto flex flex-col space-y-8 md:space-y-0 md:block md:h-[900px]">
+        {/* winding dashed path (desktop) */}
+        <svg className="absolute top-0 left-0 w-full h-full pointer-events-none hidden md:block" viewBox="0 0 1000 900" preserveAspectRatio="none" aria-hidden="true">
+          <path
+            className="how-path-line"
+            d="M 300 120 C 500 120, 560 260, 690 260 C 830 260, 470 350, 300 450 C 300 590, 540 700, 710 700"
+            fill="none"
+            strokeLinecap="round"
+            vectorEffect="non-scaling-stroke"
+          />
+        </svg>
+
+        {steps.map((s, i) => (
+          <div
+            key={s.title}
+            className={`relative w-full md:w-[290px] md:absolute transition-transform duration-300 hover:z-30 hover:scale-105 ${s.pos} ${s.rotate}`}
+            data-reveal
+          >
+            <div style={{ background: '#1a1919', border: '1px solid rgba(255,255,255,0.09)', borderRadius: '25px', padding: '8px', boxShadow: '0 18px 36px -18px rgba(0,0,0,0.65)' }}>
+              <Pin />
+              <div style={{ background: 'rgba(255,198,26,0.055)', border: '1px solid rgba(255,198,26,0.22)', borderRadius: '15px', padding: '18px' }}>
+                <span className="font-hand" style={{ color: 'var(--color-accent)', fontSize: '40px', lineHeight: 1, display: 'block', marginBottom: '14px' }}>
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div className="font-mono uppercase" style={{ fontSize: '10.5px', letterSpacing: '0.12em', color: 'var(--color-accent)', opacity: 0.9 }}>
+                  {s.kicker}
+                </div>
+                <h3 className="m-0 mt-2" style={{ fontSize: '23px', fontWeight: 600, lineHeight: 1.1, color: 'var(--color-text)', letterSpacing: '-0.01em' }}>{s.title}</h3>
+                <p className="text-muted mt-2.5 mb-0" style={{ fontSize: '14px', lineHeight: 1.55 }}>{s.text}</p>
               </div>
-              <div className="font-mono uppercase mt-1.5" style={{ fontSize: '11px', letterSpacing: '0.09em', color: 'var(--color-accent)', opacity: 0.85 }}>
-                {s.label}
-              </div>
-              <h3 className="fvs-row m-0 mt-3" style={{ fontSize: 'clamp(25px, 2.2vw, 34px)', lineHeight: 1.05 }}>{s.title}</h3>
-              <p className="text-muted mt-3.5 mb-0" style={{ fontSize: '15.5px', lineHeight: 1.65 }}>{s.text}</p>
             </div>
-          </article>
-        </div>
-      ))}
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 );

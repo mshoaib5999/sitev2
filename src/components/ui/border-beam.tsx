@@ -78,7 +78,7 @@ function BorderBeam({
         data-slot="border-beam-ring"
         className={join(
           "pointer-events-none absolute inset-0 rounded-[inherit] rtl:transform-[scaleX(-1)]",
-          "motion-safe:animate-border-beam motion-reduce:hidden",
+          "beam-ring",
           managed && "opacity-0 [animation-play-state:paused]",
           managed && triggers.includes("hover") && "group-hover/beam:opacity-100 group-hover/beam:[animation-play-state:running]",
           managed && triggers.includes("press") && "group-active/beam:opacity-100 group-active/beam:[animation-play-state:running]",
