@@ -12,12 +12,14 @@ export const AboutPage: React.FC = () => (
     <PageHead title="About" />
     <div className="gutter grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 items-start" style={{ marginTop: 'clamp(40px, 7vh, 80px)' }}>
       <figure className="m-0" data-reveal>
-        <div className="portrait-card">
-          <div className="portrait-card__frame">
-            <img src="/shoaib-portrait.jpg" alt="Muhammad Shoaib Asghar, WordPress developer in Okara, Pakistan" className="w-full block object-cover" style={{ aspectRatio: '3 / 4' }} />
-            <div className="portrait-card__shade" />
+        <BorderBeam color="var(--color-accent)" thickness={1.5} speed={7} length={14} className="rounded-[24px]">
+          <div className="portrait-card">
+            <div className="portrait-card__frame">
+              <img src="/shoaib-portrait.jpg" alt="Muhammad Shoaib Asghar, WordPress developer in Okara, Pakistan" className="w-full block object-cover" style={{ aspectRatio: '3 / 4' }} />
+              <div className="portrait-card__shade" />
+            </div>
           </div>
-        </div>
+        </BorderBeam>
         <figcaption className="eyebrow mt-3">Muhammad Shoaib Asghar — Okara, Punjab, Pakistan</figcaption>
       </figure>
       <div>
