@@ -162,7 +162,7 @@ body {
 /* ————— Service tiles ————— */
 .tile {
   position: relative; display: block; overflow: hidden;
-  border: 1px solid var(--color-hairline);
+  border: 1px solid var(--color-hairline); border-radius: 12px;
   padding: 28px; min-height: 340px;
   color: var(--color-text); text-decoration: none;
 }

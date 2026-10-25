@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { services } from '../data/services';
+import { BorderBeam } from '../components/ui/border-beam';
 
 export const Services: React.FC = () => {
   return (
@@ -10,8 +11,9 @@ export const Services: React.FC = () => {
         <Link to="/services" className="eyebrow no-underline hover:text-accent transition-colors" data-hover>All services →</Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-        {services.map((t) => (
-          <Link key={t.slug} to={`/services/${t.slug}`} className="tile" data-reveal data-hover data-cursor="Open">
+        {services.map((t, i) => (
+          <BorderBeam key={t.slug} color="var(--color-accent)" thickness={1.5} speed={7} length={12} delay={-i * 0.85} className="rounded-[12px] h-full" data-reveal>
+          <Link to={`/services/${t.slug}`} className="tile h-full" data-hover data-cursor="Open">
             <div className="tile__fill" />
             <div className="tile__content">
               <div className="flex items-start justify-between">
@@ -24,6 +26,7 @@ export const Services: React.FC = () => {
               </div>
             </div>
           </Link>
+          </BorderBeam>
         ))}
       </div>
     </section>
