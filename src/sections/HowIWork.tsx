@@ -11,7 +11,7 @@ import React from 'react';
  */
 
 const Pin: React.FC = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ width: '34px', height: '34px', color: 'var(--color-accent)', margin: '6px auto 12px', display: 'block', filter: 'drop-shadow(0 3px 4px rgba(0,0,0,0.45))' }}>
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ width: '44px', height: '44px', color: 'var(--color-accent)', margin: '6px auto 12px', display: 'block', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.55)) drop-shadow(0 0 10px rgba(255,198,26,0.25))' }}>
     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
     <path d="M16 3a1 1 0 0 1 .117 1.993l-.117 .007v4.764l1.894 3.789a1 1 0 0 1 .1 .331l.006 .116v2a1 1 0 0 1 -.883 .993l-.117 .007h-4v4a1 1 0 0 1 -1.993 .117l-.007 -.117v-4h-4a1 1 0 0 1 -.993 -.883l-.007 -.117v-2a1 1 0 0 1 .06 -.34l.046 -.107l1.894 -3.791v-4.762a1 1 0 0 1 -.117 -1.993l.117 -.007h8z" />
   </svg>
@@ -22,21 +22,21 @@ const steps = [
     kicker: 'Goals before code',
     title: 'Discovery & Strategy',
     text: 'We start with your goals, not a template. Whether it\u2019s WordPress development, a WooCommerce or Shopify store, a redesign or a migration \u2014 we map the pages, features and timeline first, and you get honest advice on what will actually win you clients.',
-    pos: 'md:top-0 md:left-[10%]',
+    pos: 'md:top-0 md:left-[7%]',
     rotate: 'rotate-[7deg]',
   },
   {
     kicker: 'Pixel-perfect, always',
     title: 'Design & Build',
     text: 'Your Figma design becomes a hand-built site \u2014 a custom WordPress theme with Elementor Pro and ACF Pro, or a Shopify, Wix or GoHighLevel build. The design you approve is exactly what your visitors get, on every screen.',
-    pos: 'md:top-[210px] md:right-[10%]',
+    pos: 'md:top-[210px] md:right-[7%]',
     rotate: '-rotate-[7deg]',
   },
   {
     kicker: 'Speed is non-negotiable',
     title: 'Performance & Polish',
     text: 'Every build is tuned for PageSpeed and green Core Web Vitals, with on-page SEO and clean, secure code baked in \u2014 because a slow site quietly costs you the very clients you already won.',
-    pos: 'md:top-[470px] md:left-[10%]',
+    pos: 'md:top-[470px] md:left-[7%]',
     rotate: 'rotate-[7deg]',
   },
   {
@@ -65,7 +65,7 @@ export const HowIWork: React.FC = () => (
       <div aria-hidden="true" className="absolute inset-y-0 left-0 w-1/3 pointer-events-none" style={{ background: 'linear-gradient(to right, var(--color-bg), transparent)' }} />
       <div aria-hidden="true" className="absolute inset-y-0 right-0 w-1/3 pointer-events-none" style={{ background: 'linear-gradient(to left, var(--color-bg), transparent)' }} />
 
-      <div className="relative z-10 max-w-[1200px] mx-auto flex flex-col space-y-8 md:space-y-0 md:block md:h-[1150px]">
+      <div className="relative z-10 w-full flex flex-col space-y-8 md:space-y-0 md:block md:h-[1150px]">
         {/* winding dashed path (desktop) */}
         <svg className="absolute top-0 left-0 w-full h-full pointer-events-none hidden md:block" viewBox="0 0 1200 1150" preserveAspectRatio="none" aria-hidden="true">
           <path
