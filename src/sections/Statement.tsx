@@ -1,116 +1,91 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { BorderBeam } from '../components/ui/border-beam';
 
-interface Token { t: string; accent?: boolean; italic?: boolean; }
+/**
+ * ( Hello ) — rebuilt after the reference layout the user supplied
+ * (Jehan Zaib's About block): a giant two-tone statement and story
+ * paragraphs on the left; on the right, the portrait card above a
+ * 2x2 magic-border stats panel. Layout and styling follow the
+ * reference; every word and number is Shoaib's own. This replaces
+ * the previous sticky word-reveal statement on the home page.
+ */
 
-const tokens: Token[] = [
-  { t: 'I’m' }, { t: 'Shoaib' }, { t: '@IMG@' }, { t: '.' },
-  { t: 'I' }, { t: 'build' }, { t: 'WordPress' }, { t: 'websites' }, { t: 'and' },
-  { t: 'WooCommerce' }, { t: 'stores' }, { t: 'that' },
-  { t: 'load fast,', accent: true, italic: true }, { t: 'rank well', accent: true, italic: true },
-  { t: 'and' }, { t: 'feel' }, { t: 'good' }, { t: 'to' }, { t: 'use.' },
-  { t: 'Designed' }, { t: 'in' }, { t: 'Figma,' }, { t: 'built' }, { t: 'with' },
-  { t: 'clean' }, { t: 'code,' }, { t: 'made' }, { t: 'in' },
-  { t: 'Pakistan', accent: true }, { t: '—' },
-  { t: 'for' }, { t: 'clients' }, { t: 'in' }, { t: 'France,' }, { t: 'California,' },
-  { t: 'Canada,' }, { t: 'Dubai' }, { t: 'and' }, { t: 'beyond.' },
+const stats = [
+  { big: '400+', small: 'Projects delivered' },
+  { big: '4+', small: 'Years of experience' },
+  { big: '12+', small: 'Industries served' },
+  { big: '5+', small: 'Countries — clients in' },
 ];
 
-export const Statement: React.FC = () => {
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
+export const Statement: React.FC = () => (
+  <section className="gutter" style={{ paddingTop: 'clamp(70px, 12vh, 130px)', paddingBottom: 'clamp(70px, 12vh, 130px)' }}>
+    <h2 className="eyebrow m-0 mb-10" style={{ color: 'var(--color-accent)', fontSize: '13px' }} data-reveal>( Hello )</h2>
 
-  useEffect(() => {
-    let raf = 0;
-    const update = () => {
-      const el = wrapRef.current;
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        const total = rect.height - window.innerHeight;
-        const p = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 1;
-        setProgress(p);
-      }
-      raf = 0;
-    };
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, []);
-
-  const litCount = Math.round(progress * tokens.length);
-
-  return (
-    <section id="about" className="gutter" style={{ paddingBottom: 'clamp(70px, 12vh, 130px)' }}>
-      <div ref={wrapRef} style={{ height: '165vh', position: 'relative' }}>
-        <div
-          className="flex flex-col justify-center"
-          style={{ position: 'sticky', top: 0, minHeight: '100vh', paddingTop: '80px' }}
+    <div className="grid grid-cols-1 lg:grid-cols-[1.12fr_0.88fr] gap-12 lg:gap-16 items-start">
+      {/* Left — statement + story */}
+      <div>
+        <p
+          className="m-0"
+          style={{ fontSize: 'clamp(34px, 4.3vw, 66px)', lineHeight: 1.07, letterSpacing: '-0.015em', fontVariationSettings: '"wdth" 92, "wght" 580' }}
+          data-reveal
         >
-          <div className="eyebrow eyebrow--accent mb-7">(Hello)</div>
-          <p
-            className="m-0 font-medium"
-            style={{
-              fontSize: 'clamp(28px, 4.6vw, 74px)',
-              lineHeight: 1.04,
-              letterSpacing: '-0.015em',
-              maxWidth: '1200px',
-              fontVariationSettings: '"wdth" 92, "wght" 580',
-            }}
-          >
-            {tokens.map((tok, i) => {
-              const lit = i < litCount;
-              if (tok.t === '@IMG@') {
-                return (
-                  <img
-                    key={i}
-                    src="/shoaib-portrait.jpg"
-                    alt="Muhammad Shoaib Asghar"
-                    className="inline-block object-cover align-[-0.1em] mx-1"
-                    style={{ width: '1.6em', height: '1.05em', borderRadius: '4px', opacity: lit ? 1 : 0.2, transition: 'opacity 0.3s' }}
-                  />
-                );
-              }
-              return (
-                <span
-                  key={i}
-                  className={tok.italic ? 'fvs-italic' : undefined}
-                  style={{
-                    color: tok.accent ? 'var(--color-accent)' : 'var(--color-text)',
-                    opacity: lit ? 1 : 0.14,
-                    transition: 'opacity 0.3s',
-                  }}
-                >
-                  {tok.t}{' '}
-                </span>
-              );
-            })}
+          Websites that win you clients, not just compliments.{' '}
+          <span style={{ color: 'var(--color-faint)' }}>
+            Designed properly, built properly — made to load fast, rank well and turn visitors into enquiries.
+          </span>
+        </p>
+
+        <div className="mt-10" style={{ maxWidth: '56ch' }} data-reveal>
+          <p className="text-muted" style={{ fontSize: '16.5px', lineHeight: 1.7 }}>
+            I'm Shoaib — a senior WordPress developer based in Okara, Pakistan. I learned the craft the slow
+            way, project by project, and that pace — build fast, deliver faster, never ship careless work —
+            is still how every site leaves my desk.
+          </p>
+          <p className="text-muted mt-5" style={{ fontSize: '16.5px', lineHeight: 1.7 }}>
+            Today that adds up to 400+ websites for businesses and agencies in France, the USA, Canada, Dubai
+            and beyond: WordPress and WooCommerce at the core, with Shopify, Wix, Webflow and GoHighLevel when
+            a project calls for them — every build hand-finished, with clean code, green Core Web Vitals and
+            on-page SEO baked in.
+          </p>
+          <p className="text-muted mt-5" style={{ fontSize: '16.5px', lineHeight: 1.7 }}>
+            My standard hasn't changed with the scale: I don't hand off templates and disappear. If a page
+            doesn't earn its place — in speed, in ranking, in enquiries — it isn't finished.
+          </p>
+          <p className="mt-6 mb-0" style={{ fontSize: '16.5px', lineHeight: 1.7, fontStyle: 'italic', color: 'var(--color-faint)' }}>
+            "A beautiful website is worthless if it doesn't win you work." — that is why clients come back
+            for their second and third projects.
           </p>
         </div>
       </div>
-      <BorderBeam color="var(--color-accent)" thickness={1.5} speed={7} length={14} className="rounded-[24px]" data-reveal>
-      <div className="magic-panel">
-        <div className="magic-panel__inner grid-cols-1 sm:grid-cols-3">
-          {[
-            { big: '400+', small: 'Websites delivered' },
-            { big: '4+', small: 'Years of experience' },
-            { big: '12+', small: 'Industries — real estate to AI' },
-          ].map((s) => (
-            <div key={s.small} className="magic-cell">
-              <div className="fvs-display leading-none" style={{ fontSize: 'clamp(40px, 4.6vw, 68px)' }}>{s.big}</div>
-              <div className="eyebrow mt-3">{s.small}</div>
+
+      {/* Right — portrait + stats */}
+      <div>
+        <div data-reveal>
+          <BorderBeam color="var(--color-accent)" thickness={1.5} speed={7} length={14} className="rounded-[24px]">
+            <div className="portrait-card">
+              <div className="portrait-card__frame">
+                <img src="/shoaib-portrait.jpg" alt="Muhammad Shoaib Asghar" className="w-full block object-cover" style={{ aspectRatio: '3 / 4' }} />
+                <div className="portrait-card__shade" />
+              </div>
             </div>
-          ))}
+          </BorderBeam>
+        </div>
+
+        <div className="mt-5" data-reveal>
+          <BorderBeam color="var(--color-accent)" thickness={1.5} speed={7} length={14} className="rounded-[24px]">
+            <div className="magic-panel">
+              <div className="magic-panel__inner grid-cols-2">
+                {stats.map((s) => (
+                  <div key={s.small} className="magic-cell">
+                    <div className="fvs-display leading-none" style={{ fontSize: 'clamp(34px, 3.4vw, 52px)' }}>{s.big}</div>
+                    <div className="eyebrow mt-3">{s.small}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </BorderBeam>
         </div>
       </div>
-      </BorderBeam>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
