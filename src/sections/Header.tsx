@@ -90,7 +90,7 @@ export const Header: React.FC = () => {
               <span style={{ color: 'var(--color-accent)' }}>A</span>sghar
             </span>
           </Link>
-          <span className="eyebrow hidden lg:block">WordPress Platform Architect <span style={{ color: 'var(--color-accent)' }}>/</span> {time} PKT</span>
+          <span className="eyebrow hidden lg:block">Digital Growth Architect <span style={{ color: 'var(--color-accent)' }}>/</span> {time} PKT</span>
           <nav className="flex items-center gap-7">
             {links.map((l) => (
               <NavLink
@@ -137,7 +137,7 @@ export const Header: React.FC = () => {
           <a href={`mailto:${contact.email}`} className="text-ink no-underline hover:text-accent transition-colors" data-hover>
             {contact.email}
           </a>
-          <span className="eyebrow">WordPress Platform Architect / {time} PKT</span>
+          <span className="eyebrow">Digital Growth Architect / {time} PKT</span>
         </div>
       </div>
     </>
