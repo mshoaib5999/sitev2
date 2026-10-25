@@ -70,7 +70,7 @@ export const Statement: React.FC = () => {
                 return (
                   <img
                     key={i}
-                    src="/shoaib_profile.jpg"
+                    src="/shoaib-portrait.jpg"
                     alt="Muhammad Shoaib Asghar"
                     className="inline-block object-cover align-[-0.1em] mx-1"
                     style={{ width: '1.6em', height: '1.05em', borderRadius: '4px', opacity: lit ? 1 : 0.2, transition: 'opacity 0.3s' }}
@@ -94,17 +94,19 @@ export const Statement: React.FC = () => {
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8" style={{ borderTop: '1px solid var(--color-hairline)' }} data-reveal>
-        {[
-          { big: '400+', small: 'Websites delivered' },
-          { big: '4+', small: 'Years of experience' },
-          { big: '12+', small: 'Industries — real estate to AI' },
-        ].map((s) => (
-          <div key={s.small}>
-            <div className="fvs-display leading-none" style={{ fontSize: 'clamp(44px, 5.5vw, 84px)' }}>{s.big}</div>
-            <div className="eyebrow mt-3">{s.small}</div>
-          </div>
-        ))}
+      <div className="magic-panel" data-reveal>
+        <div className="magic-panel__inner grid-cols-1 sm:grid-cols-3">
+          {[
+            { big: '400+', small: 'Websites delivered' },
+            { big: '4+', small: 'Years of experience' },
+            { big: '12+', small: 'Industries — real estate to AI' },
+          ].map((s) => (
+            <div key={s.small} className="magic-cell">
+              <div className="fvs-display leading-none" style={{ fontSize: 'clamp(40px, 4.6vw, 68px)' }}>{s.big}</div>
+              <div className="eyebrow mt-3">{s.small}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

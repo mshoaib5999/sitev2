@@ -11,8 +11,11 @@ export const AboutPage: React.FC = () => (
     <PageHead title="About" />
     <div className="gutter grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-12 items-start" style={{ marginTop: 'clamp(40px, 7vh, 80px)' }}>
       <figure className="m-0" data-reveal>
-        <div className="overflow-hidden" style={{ borderRadius: 'var(--radius-image)' }}>
-          <img src="/shoaib_profile.jpg" alt="Muhammad Shoaib Asghar, WordPress developer in Okara, Pakistan" className="w-full block object-cover" style={{ aspectRatio: '4 / 5' }} />
+        <div className="portrait-card">
+          <div className="portrait-card__frame">
+            <img src="/shoaib-portrait.jpg" alt="Muhammad Shoaib Asghar, WordPress developer in Okara, Pakistan" className="w-full block object-cover" style={{ aspectRatio: '3 / 4' }} />
+            <div className="portrait-card__shade" />
+          </div>
         </div>
         <figcaption className="eyebrow mt-3">Muhammad Shoaib Asghar — Okara, Punjab, Pakistan</figcaption>
       </figure>
@@ -49,17 +52,21 @@ export const AboutPage: React.FC = () => (
       </div>
     </div>
 
-    <div className="gutter grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 mt-24" style={{ borderTop: '1px solid var(--color-hairline)' }} data-reveal>
-      {[
-        { big: '400+', small: 'Websites delivered' },
-        { big: '4+', small: 'Years of experience' },
-        { big: '12+', small: 'Industries — real estate to AI' },
-      ].map((s) => (
-        <div key={s.small}>
-          <div className="fvs-display leading-none" style={{ fontSize: 'clamp(44px, 5.5vw, 84px)' }}>{s.big}</div>
-          <div className="eyebrow mt-3">{s.small}</div>
+    <div className="gutter mt-24" data-reveal>
+      <div className="magic-panel">
+        <div className="magic-panel__inner grid-cols-1 sm:grid-cols-3">
+          {[
+            { big: '400+', small: 'Websites delivered' },
+            { big: '4+', small: 'Years of experience' },
+            { big: '12+', small: 'Industries — real estate to AI' },
+          ].map((s) => (
+            <div key={s.small} className="magic-cell">
+              <div className="fvs-display leading-none" style={{ fontSize: 'clamp(40px, 4.6vw, 68px)' }}>{s.big}</div>
+              <div className="eyebrow mt-3">{s.small}</div>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </div>
 
     <div className="gutter mt-28">
