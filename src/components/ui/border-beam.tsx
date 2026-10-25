@@ -62,7 +62,7 @@ function BorderBeam({
       data-reveal-beam={managed ? triggers.join(" ") : undefined}
       data-revealed={reveal ? "" : undefined}
       data-show-on-touch={showOnTouch ? "" : undefined}
-      className={join("relative rounded-xl", grouped && "group/beam", className)}
+      className={join("relative", grouped && "group/beam", className)}
       style={
         {
           "--border-beam-duration": `${speed}s`,

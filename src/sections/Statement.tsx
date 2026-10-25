@@ -60,30 +60,24 @@ export const Statement: React.FC = () => (
 
       {/* Right — portrait + stats */}
       <div>
-        <div data-reveal>
-          <BorderBeam color="var(--color-accent)" thickness={1.5} speed={7} length={14} className="rounded-[24px]">
-            <div className="portrait-card">
-              <div className="portrait-card__frame">
-                <img src="/shoaib-portrait.jpg" alt="Muhammad Shoaib Asghar" className="w-full block object-cover" style={{ aspectRatio: '3 / 4' }} />
-                <div className="portrait-card__shade" />
-              </div>
-            </div>
-          </BorderBeam>
+        <div className="portrait-card relative" data-reveal>
+          <div className="portrait-card__frame">
+            <img src="/shoaib-portrait.jpg" alt="Muhammad Shoaib Asghar" className="w-full block object-cover" style={{ aspectRatio: '3 / 4' }} />
+            <div className="portrait-card__shade" />
+          </div>
+          <div className="absolute inset-0 pointer-events-none"><BorderBeam color="var(--color-accent)" thickness={1.5} speed={7} length={14} className="h-full w-full rounded-[24px]" /></div>
         </div>
 
-        <div className="mt-5" data-reveal>
-          <BorderBeam color="var(--color-accent)" thickness={1.5} speed={7} length={14} className="rounded-[24px]">
-            <div className="magic-panel">
-              <div className="magic-panel__inner grid-cols-2">
-                {stats.map((s) => (
-                  <div key={s.small} className="magic-cell">
-                    <div className="fvs-display leading-none" style={{ fontSize: 'clamp(34px, 3.4vw, 52px)' }}>{s.big}</div>
-                    <div className="eyebrow mt-3">{s.small}</div>
-                  </div>
-                ))}
+        <div className="magic-panel relative mt-5" data-reveal>
+          <div className="magic-panel__inner grid-cols-2">
+            {stats.map((s) => (
+              <div key={s.small} className="magic-cell">
+                <div className="fvs-display leading-none" style={{ fontSize: 'clamp(34px, 3.4vw, 52px)' }}>{s.big}</div>
+                <div className="eyebrow mt-3">{s.small}</div>
               </div>
-            </div>
-          </BorderBeam>
+            ))}
+          </div>
+          <div className="absolute inset-0 pointer-events-none"><BorderBeam color="var(--color-accent)" thickness={1.5} speed={7} length={14} className="h-full w-full rounded-[24px]" /></div>
         </div>
       </div>
     </div>
