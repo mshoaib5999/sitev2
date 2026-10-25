@@ -10,7 +10,25 @@ export const WorkPage: React.FC = () => {
   const titleRef = useKinetic<HTMLHeadingElement>();
   const [hovered, setHovered] = useState<number | null>(null);
   const floatRef = useRef<HTMLDivElement>(null);
+  const rowsRef = useRef<HTMLDivElement>(null);
   const pointer = useRef({ x: -600, y: -600 });
+  const hoveredRef = useRef<number | null>(null);
+  hoveredRef.current = hovered;
+
+  // The poster must only live over the rows: clear the hover as soon as
+  // scrolling moves the list out from under the pointer (the page-level
+  // pointerleave alone left it stuck over the Industries section).
+  useEffect(() => {
+    const onScroll = () => {
+      if (hoveredRef.current === null) return;
+      const wrap = rowsRef.current;
+      if (!wrap) return;
+      const r = wrap.getBoundingClientRect();
+      if (pointer.current.y < r.top || pointer.current.y > r.bottom) setHovered(null);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   // Floating preview that trails the cursor over the rows, like the
   // reference work page: poster (or project image) with a slight tilt.
@@ -62,7 +80,7 @@ export const WorkPage: React.FC = () => {
       <span>№</span><span>Project</span><span>What</span><span>Where / When</span><span />
     </div>
 
-    <div>
+    <div ref={rowsRef} onMouseLeave={() => setHovered(null)}>
       {allProjects.map((p, i) => (
         <div key={p.slug} data-reveal style={{ transitionDelay: `${Math.min(i, 5) * 60}ms` }}>
           <Link
