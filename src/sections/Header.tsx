@@ -36,10 +36,50 @@ const menuItems = [
 export const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
   const time = useOkaraTime();
+  const progressRef = React.useRef<HTMLDivElement>(null);
+
+  // Gold scroll-progress bar at the very top: fills left -> right with
+  // page scroll (in his branding, after the reference he supplied).
+  useEffect(() => {
+    const el = progressRef.current;
+    if (!el) return;
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      el.style.transform = `scaleX(${p})`;
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, []);
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-[70]">
+        <div aria-hidden="true" className="absolute left-0 top-0 h-[3px] w-full" style={{ background: 'rgba(255,255,255,0.06)', zIndex: 80 }}>
+          <div
+            ref={progressRef}
+            className="h-full w-full"
+            style={{
+              transform: 'scaleX(0)',
+              transformOrigin: 'left center',
+              background: 'linear-gradient(90deg, var(--color-accent), #ffe08a)',
+              boxShadow: '0 0 10px rgba(255,198,26,0.45)',
+            }}
+          />
+        </div>
         <div
           className="gutter flex items-center justify-between py-5"
           style={{ background: 'linear-gradient(rgba(17,16,16,0.92), rgba(17,16,16,0.75) 70%, transparent)', backdropFilter: 'blur(6px)' }}
@@ -50,7 +90,7 @@ export const Header: React.FC = () => {
               <span style={{ color: 'var(--color-accent)' }}>A</span>sghar
             </span>
           </Link>
-          <span className="eyebrow hidden lg:block">Okara, Pakistan <span style={{ color: 'var(--color-accent)' }}>/</span> {time} PKT</span>
+          <span className="eyebrow hidden lg:block">WordPress Platform Architect <span style={{ color: 'var(--color-accent)' }}>/</span> {time} PKT</span>
           <nav className="flex items-center gap-7">
             {links.map((l) => (
               <NavLink
@@ -97,7 +137,7 @@ export const Header: React.FC = () => {
           <a href={`mailto:${contact.email}`} className="text-ink no-underline hover:text-accent transition-colors" data-hover>
             {contact.email}
           </a>
-          <span className="eyebrow">Okara, Pakistan / {time} PKT</span>
+          <span className="eyebrow">WordPress Platform Architect / {time} PKT</span>
         </div>
       </div>
     </>
