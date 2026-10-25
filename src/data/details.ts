@@ -174,6 +174,17 @@ const more: FullProject[] = [
     ],
     url: 'https://northdevelopment.com', image: '/projects/more/north-development.jpg',
   },
+  {
+    slug: 'pibi-pop', name: 'PiBi-POP', yearLabel: 'Earlier work', service: 'Health & wellness brand website', place: 'USA',
+    description: 'Science-backed wellness, made simple — a modern website for PiBi-POP, a probiotic brand folding gut health into daily essentials, founded by two PhD scientists.',
+    overview: 'PiBi-POP is an American probiotic brand founded by two PhD scientists with over forty years of combined pharmaceutical experience. Its idea is simple: a healthy gut is the foundation of overall wellness, so it builds gut-supporting probiotics and prebiotics into daily essentials — chewables, EZ-melts, effervescent tablets and dissolvable powder pouches — under its \u201cOne Less Pill to Swallow\u00ae\u201d approach. The website tells that story end to end: the product range, the science and the results, presented in a bright, confident design that makes a clinical subject feel friendly.',
+    features: [
+      { title: 'Brand & product showcase', text: 'The range — led by the Zinc, Magnesium & Vitamin-B6 chewable with Bacillus Coagulans — presented with clear benefits and a 4.9 client rating up front.' },
+      { title: 'Science, told simply', text: 'The brand\u2019s three missions — closing the gut-health gap, simplifying wellness and premium nutrition at real value — explained in plain language a shopper can follow.' },
+      { title: 'Built for trust', text: 'Transparent ingredients (no fillers, no GMOs, no artificial colours) and manufacture in GMP-certified, FDA-registered facilities surfaced throughout the journey.' },
+    ],
+    url: 'https://pbpop.com/', image: '/projects/more/pibi-pop.jpg',
+  },
 ];
 
 export const allProjects: FullProject[] = [...main, ...more];

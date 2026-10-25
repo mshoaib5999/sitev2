@@ -11,6 +11,7 @@ export const posterBySlug: Record<string, string> = {
   'flip-my-life': '/projects/posters/poster-flip-my-life.jpg',
   'creative-contracting': '/projects/posters/poster-creative-contracting.jpg',
   'north-development': '/projects/posters/poster-north-development.jpg',
+  'pibi-pop': '/projects/posters/poster-pibi-pop.jpg',
 };
 
 export const posterFor = (slug: string, fallback: string) => posterBySlug[slug] ?? fallback;
