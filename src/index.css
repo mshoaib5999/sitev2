@@ -245,6 +245,11 @@ a.index-row:hover .index-row__name { transform: translateX(10px); color: var(--c
 .skill-tile svg { width: 22px; height: 22px; stroke: var(--color-bg); fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .skill-label { font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; font-size: 15px; color: var(--color-text); white-space: nowrap; }
 
+/* ————— BorderBeam (components/ui/border-beam) ————— */
+@property --border-beam-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@keyframes border-beam { to { --border-beam-angle: 360deg; } }
+.animate-border-beam { animation: border-beam var(--border-beam-duration, 5s) linear infinite; animation-delay: var(--border-beam-delay, 0s); }
+
 /* ————— Portrait card + magic-border stat panels ————— */
 .portrait-card { padding: 10px; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; background: rgba(255, 255, 255, 0.03); box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.55); }
 .portrait-card__frame { position: relative; overflow: hidden; border-radius: 16px; background: #060606; }

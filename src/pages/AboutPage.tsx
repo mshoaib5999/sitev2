@@ -5,6 +5,7 @@ import { experience } from '../data/projects';
 import { RevealWords } from '../sections/RevealWords';
 import { Skills } from '../sections/Skills';
 import { HowIWork } from '../sections/HowIWork';
+import { BorderBeam } from '../components/ui/border-beam';
 
 export const AboutPage: React.FC = () => (
   <div>
@@ -53,6 +54,7 @@ export const AboutPage: React.FC = () => (
     </div>
 
     <div className="gutter mt-24" data-reveal>
+      <BorderBeam color="var(--color-accent)" thickness={1.5} speed={7} length={14} className="rounded-[24px]">
       <div className="magic-panel">
         <div className="magic-panel__inner grid-cols-1 sm:grid-cols-3">
           {[
@@ -67,6 +69,7 @@ export const AboutPage: React.FC = () => (
           ))}
         </div>
       </div>
+      </BorderBeam>
     </div>
 
     <div className="gutter mt-28">

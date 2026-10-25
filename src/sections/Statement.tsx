@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { BorderBeam } from '../components/ui/border-beam';
 
 interface Token { t: string; accent?: boolean; italic?: boolean; }
 
@@ -94,7 +95,8 @@ export const Statement: React.FC = () => {
           </p>
         </div>
       </div>
-      <div className="magic-panel" data-reveal>
+      <BorderBeam color="var(--color-accent)" thickness={1.5} speed={7} length={14} className="rounded-[24px]" data-reveal>
+      <div className="magic-panel">
         <div className="magic-panel__inner grid-cols-1 sm:grid-cols-3">
           {[
             { big: '400+', small: 'Websites delivered' },
@@ -108,6 +110,7 @@ export const Statement: React.FC = () => {
           ))}
         </div>
       </div>
+      </BorderBeam>
     </section>
   );
 };
