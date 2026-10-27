@@ -139,5 +139,8 @@ export const contact = {
   phone: '+92 310 6077900',
   phoneHref: 'tel:+923106077900',
   linkedin: 'https://www.linkedin.com/in/muhammad-shoaib-asghar-444b7120a',
+  facebook: 'https://www.facebook.com/share/1dMP1cUt2m/?mibextid=wwXIfr',
+  instagram: 'https://www.instagram.com/s_h_o_a_i_b_b_b',
+  github: 'https://github.com/mshoaib5999',
   site: 'shoaibasghar.website',
 };

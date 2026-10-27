@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { contact } from '../data/projects';
 import { KineticText, useKinetic } from './Kinetic';
+import { SocialLinks } from '../components/ui/social-links';
 
 export const Footer: React.FC = () => {
   const bigRef = useKinetic<HTMLAnchorElement>({ radius: 560 });
@@ -11,6 +12,16 @@ export const Footer: React.FC = () => {
       <Link ref={bigRef} to="/contact" className="footer__big fvs-display" data-reveal data-hover data-cursor="Let’s go" aria-label="Go to the contact page">
         <KineticText text="Let’s talk" />
       </Link>
+      <div className="mt-16 flex justify-center" data-reveal>
+        <SocialLinks
+          socials={[
+            { name: 'Facebook', href: contact.facebook, icon: 'facebook' },
+            { name: 'Instagram', href: contact.instagram, icon: 'instagram' },
+            { name: 'LinkedIn', href: contact.linkedin, icon: 'linkedin' },
+            { name: 'GitHub', href: contact.github, icon: 'github' },
+          ]}
+        />
+      </div>
       <div
         className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4 mt-14 pt-6"
         style={{ borderTop: '1px solid var(--color-hairline)' }}
