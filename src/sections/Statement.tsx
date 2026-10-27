@@ -91,7 +91,7 @@ export const Statement: React.FC = () => (
           <RevealWords
             style={{ fontSize: '16.5px', lineHeight: 1.7, color: 'var(--color-muted)' }}
             litColor="var(--color-text)"
-            text="I'm Shoaib — a senior WordPress developer based in Okara, Pakistan. I learned the craft the slow way, project by project, and that pace — build fast, deliver faster, never ship careless work — is still how every site leaves my desk."
+            text="I'm Shoaib — a senior WordPress developer. I learned the craft the slow way, project by project, and that pace — build fast, deliver faster, never ship careless work — is still how every site leaves my desk."
           />
           <RevealWords
             className="mt-5"

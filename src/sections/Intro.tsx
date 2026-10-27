@@ -68,8 +68,6 @@ export const Intro: React.FC<{ onDone: () => void }> = ({ onDone }) => {
       <div className="flex items-end justify-between">
         <span className="eyebrow" style={{ lineHeight: 1.9 }}>
           Senior WordPress Developer
-          <br />
-          Okara, Pakistan
         </span>
         <span className="fvs-display leading-none" style={{ fontSize: 'clamp(56px, 10vw, 150px)' }}>
           {String(count).padStart(3, '0')}

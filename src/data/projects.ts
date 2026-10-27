@@ -106,7 +106,7 @@ export const experience: ExperienceItem[] = [
   {
     role: 'Senior WordPress Developer',
     company: 'Upastra Digital Agency',
-    place: 'Okara, Pakistan',
+    place: '',
     period: 'Jan 2024 — Present',
   },
   {

@@ -81,7 +81,7 @@ export const ContactPage: React.FC = () => {
             </li>
             <li>
               <div className="eyebrow mb-1">Based in</div>
-              <span>Okara, Punjab, Pakistan — working worldwide</span>
+              <span>Working worldwide</span>
             </li>
           </ul>
           <div className="mt-10 p-6 bg-surface" style={{ borderRadius: 'var(--radius-image)' }}>

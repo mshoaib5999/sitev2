@@ -14,18 +14,18 @@ export const AboutPage: React.FC = () => (
       <figure className="m-0" data-reveal>
         <div className="portrait-card relative">
           <div className="portrait-card__frame">
-            <img src="/shoaib-portrait.jpg" alt="Muhammad Shoaib Asghar, WordPress developer in Okara, Pakistan" className="w-full block object-cover" style={{ aspectRatio: '3 / 4' }} />
+            <img src="/shoaib-portrait.jpg" alt="Muhammad Shoaib Asghar, WordPress developer" className="w-full block object-cover" style={{ aspectRatio: '3 / 4' }} />
             <div className="portrait-card__shade" />
           </div>
           <div className="absolute inset-0 pointer-events-none"><BorderBeam color="var(--color-accent)" thickness={1.5} speed={7} length={14} className="h-full w-full rounded-[24px]" /></div>
         </div>
-        <figcaption className="eyebrow mt-3">Muhammad Shoaib Asghar — Okara, Punjab, Pakistan</figcaption>
+        <figcaption className="eyebrow mt-3">Muhammad Shoaib Asghar</figcaption>
       </figure>
       <div>
         <RevealWords
           className="m-0 font-medium"
           style={{ fontSize: 'clamp(23px, 2.6vw, 37px)', lineHeight: 1.28 }}
-          text="I’m Shoaib — a senior WordPress developer based in Okara, Pakistan. I help businesses and agencies win more clients with websites that load fast, rank well and convert."
+          text="I’m Shoaib — a senior WordPress developer. I help businesses and agencies win more clients with websites that load fast, rank well and convert."
         />
         <RevealWords
           className="mt-7 mb-0"
@@ -78,7 +78,7 @@ export const AboutPage: React.FC = () => (
         {experience.map((e) => (
           <div key={e.company} className="index-row" data-reveal>
             <span className="index-row__name fvs-row" style={{ fontSize: 'clamp(22px, 2.6vw, 38px)' }}>{e.role}</span>
-            <span className="eyebrow">{e.company} — {e.place}</span>
+            <span className="eyebrow">{e.company}{e.place ? ` — ${e.place}` : ''}</span>
             <span className="eyebrow">{e.period}</span>
             <span />
           </div>

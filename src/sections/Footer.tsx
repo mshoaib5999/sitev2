@@ -27,7 +27,7 @@ export const Footer: React.FC = () => {
       </div>
       <div className="flex flex-wrap justify-between gap-4 mt-6">
         <span className="eyebrow">©2026 Muhammad Shoaib Asghar</span>
-        <span className="eyebrow">Okara, Pakistan <span style={{ color: 'var(--color-accent)' }}>/</span> WordPress · WooCommerce · Speed</span>
+        <span className="eyebrow">WordPress · WooCommerce · Speed</span>
       </div>
     </footer>
   );
