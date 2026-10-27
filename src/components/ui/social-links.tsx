@@ -19,10 +19,12 @@ const ICONS: Record<SocialIconKey, { vb: string; d: string }> = {
   linkedin: { vb: "0 0 448 512", d: "M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" }
 };
 
-/** Official brand colors for the glyphs (Instagram uses its gradient). */
-const ICON_COLORS: Record<SocialIconKey, string> = {
-  facebook: "#1877F2",
-  instagram: "url(#social-ig-gradient)",
+/** Official brand looks: the pop tile IS the app icon (solid/gradient
+ *  brand background, white glyph) — the supplied demo's style. */
+const ICON_BG: Record<SocialIconKey, string> = {
+  facebook: "linear-gradient(180deg, #18ACFE, #0163E0)",
+  instagram:
+    "radial-gradient(circle at 30% 107%, #FDF497 0%, #FDF497 5%, #FD5949 45%, #D6249F 60%, #285AEB 90%)",
   linkedin: "#0A66C2",
 };
 
@@ -64,7 +66,10 @@ export function SocialLinks({ socials }: { socials: Social[] }) {
             onClick={() => pulse(s.name)}
             aria-label={`${s.name} profile`}
           >
-            <span className="eyebrow block transition-colors" style={{ fontSize: "13px", color: isHovered ? "var(--color-accent)" : undefined }}>
+            <span
+              className="block transition-colors duration-200"
+              style={{ fontSize: "17px", fontWeight: 550, letterSpacing: "0.005em", color: isHovered ? "var(--color-text)" : "var(--color-muted)" }}
+            >
               {s.name}
             </span>
             <span
@@ -75,9 +80,8 @@ export function SocialLinks({ socials }: { socials: Social[] }) {
                 width: "64px",
                 height: "64px",
                 borderRadius: "18px",
-                background: "linear-gradient(145deg, rgba(255,198,26,0.20), rgba(255,198,26,0.05))",
-                border: "1px solid rgba(255,198,26,0.45)",
-                boxShadow: "0 16px 34px -12px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.10)",
+                background: ICON_BG[s.icon],
+                boxShadow: "0 16px 34px -12px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.18)",
                 opacity: isHovered ? 1 : 0,
                 transform: `translateX(-50%) translateY(${isHovered ? "0" : "10px"}) rotate(${rotation}deg) scale(${pulsed === s.name ? 1.25 : isHovered ? 1 : 0.8})`,
                 filter: isHovered ? "blur(0px)" : "blur(2px)",
@@ -85,18 +89,7 @@ export function SocialLinks({ socials }: { socials: Social[] }) {
                 zIndex: 5,
               }}
             >
-              <svg viewBox={icon.vb} width="30" height="30" fill={ICON_COLORS[s.icon]} aria-hidden="true">
-                {s.icon === "instagram" && (
-                  <defs>
-                    <linearGradient id="social-ig-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#FFD600" />
-                      <stop offset="25%" stopColor="#FF7A00" />
-                      <stop offset="50%" stopColor="#FF0069" />
-                      <stop offset="75%" stopColor="#D300C5" />
-                      <stop offset="100%" stopColor="#7638FA" />
-                    </linearGradient>
-                  </defs>
-                )}
+              <svg viewBox={icon.vb} width="34" height="34" fill="#FFFFFF" aria-hidden="true">
                 <path d={icon.d} />
               </svg>
             </span>
