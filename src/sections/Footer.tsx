@@ -18,7 +18,6 @@ export const Footer: React.FC = () => {
             { name: 'Facebook', href: contact.facebook, icon: 'facebook' },
             { name: 'Instagram', href: contact.instagram, icon: 'instagram' },
             { name: 'LinkedIn', href: contact.linkedin, icon: 'linkedin' },
-            { name: 'GitHub', href: contact.github, icon: 'github' },
           ]}
         />
       </div>
