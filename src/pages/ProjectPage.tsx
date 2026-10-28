@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { getProject, nextProject } from '../data/details';
-import { NextBlock } from './shared';
+import { getProject } from '../data/details';
 import { KineticText, useKinetic } from '../sections/Kinetic';
 
 
 /**
  * Full-page screenshot in a fixed frame: hovering scrolls it slowly from
  * top to bottom (the Elementor image-scroller behaviour), leaving scrolls
- * it back. Tap toggles it on touch devices. Used on the Bastide case study.
+ * it back. Tap toggles it on touch devices. Used on every case study.
  */
 const HoverScrollImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
   const frameRef = useRef<HTMLDivElement>(null);
@@ -76,32 +75,6 @@ export const ProjectPage: React.FC = () => {
   const { slug = '' } = useParams();
   const project = getProject(slug);
   const titleRef = useKinetic<HTMLHeadingElement>();
-  const heroImgRef = useRef<HTMLImageElement>(null);
-
-  // Slight parallax on the hero image, like the reference case studies.
-  useEffect(() => {
-    let raf = 0;
-    const onScroll = () => {
-      if (raf) return;
-      raf = requestAnimationFrame(() => {
-        raf = 0;
-        const img = heroImgRef.current;
-        if (img) {
-          const rect = img.parentElement?.getBoundingClientRect();
-          if (rect && rect.bottom > 0 && rect.top < window.innerHeight) {
-            const p = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-            img.style.transform = `translateY(${(p - 0.5) * -46}px) scale(1.16)`;
-          }
-        }
-      });
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, [slug]);
 
   if (!project) {
     return (
@@ -111,8 +84,6 @@ export const ProjectPage: React.FC = () => {
       </div>
     );
   }
-
-  const next = nextProject(project.slug);
 
   return (
     <article>
@@ -149,58 +120,35 @@ export const ProjectPage: React.FC = () => {
         </ul>
       </div>
 
-      {project.scrollImage ? (
-        <div className="gutter grid grid-cols-1 lg:grid-cols-[5fr_6fr] gap-10 lg:gap-14 mt-12 items-start">
-          <HoverScrollImage src={project.scrollImage} alt={`${project.name} — full homepage`} />
-          <div>
-            <h2 className="eyebrow m-0" style={{ color: 'var(--color-accent)', fontSize: '13px' }} data-reveal>( Overview )</h2>
-            <p className="font-medium mt-7 mb-0" style={{ fontSize: 'clamp(21px, 2.2vw, 31px)', lineHeight: 1.32 }} data-reveal>
-              {project.description}
-            </p>
-            <p className="text-muted mt-7 mb-0" style={{ fontSize: '17px', lineHeight: 1.65, maxWidth: '58ch' }} data-reveal>
-              {project.overview}
-            </p>
+      {/* Overview (left) + full-page scroller (right) — the Bastide layout, on every case study. */}
+      <div className="gutter grid grid-cols-1 lg:grid-cols-[6fr_5fr] gap-10 lg:gap-14 mt-12 items-start">
+        <div>
+          <h2 className="eyebrow m-0" style={{ color: 'var(--color-accent)', fontSize: '13px' }} data-reveal>( Overview )</h2>
+          <p className="font-medium mt-7 mb-0" style={{ fontSize: 'clamp(21px, 2.2vw, 31px)', lineHeight: 1.32 }} data-reveal>
+            {project.description}
+          </p>
+          <p className="text-muted mt-7 mb-0" style={{ fontSize: '17px', lineHeight: 1.65, maxWidth: '58ch' }} data-reveal>
+            {project.overview}
+          </p>
+          {project.stats && (
             <div className="grid grid-cols-3 gap-6 mt-10" data-reveal>
-              {[
-                { big: '28', small: 'Pages designed' },
-                { big: '02', small: 'Languages — FR · EN' },
-                { big: 'Direct', small: 'Booking on-site' },
-              ].map((s) => (
+              {project.stats.map((s) => (
                 <div key={s.small} className="pt-5" style={{ borderTop: '1px solid var(--color-hairline)' }}>
                   <div className="fvs-display leading-none" style={{ fontSize: 'clamp(22px, 2vw, 32px)' }}>{s.big}</div>
                   <div className="eyebrow mt-2.5">{s.small}</div>
                 </div>
               ))}
             </div>
+          )}
+        </div>
+        {project.scrollImage ? (
+          <HoverScrollImage src={project.scrollImage} alt={`${project.name} — full homepage`} />
+        ) : (
+          <div className="overflow-hidden bg-surface" style={{ aspectRatio: '4 / 5', borderRadius: 'var(--radius-image)', border: '1px solid var(--color-hairline)' }} data-reveal>
+            <img src={project.image} alt={`${project.name} — website by Muhammad Shoaib Asghar`} className="w-full h-full object-cover" />
           </div>
-        </div>
-      ) : (
-      <>
-      <div className="gutter mt-12">
-        <div className="overflow-hidden bg-surface" style={{ aspectRatio: '16 / 9', borderRadius: 'var(--radius-image)' }} data-reveal>
-          <img
-            ref={heroImgRef}
-            src={project.image}
-            alt={`${project.name} — website by Muhammad Shoaib Asghar`}
-            className="w-full h-full object-cover"
-            style={{ transform: 'scale(1.16)', willChange: 'transform' }}
-          />
-        </div>
+        )}
       </div>
-
-      <div className="gutter grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8 mt-20">
-        <h2 className="eyebrow m-0" style={{ color: 'var(--color-accent)', fontSize: '13px' }} data-reveal>( Overview )</h2>
-        <div data-reveal>
-          <p className="m-0 font-medium" style={{ fontSize: 'clamp(21px, 2.2vw, 31px)', lineHeight: 1.32, maxWidth: '30em' }}>
-            {project.description}
-          </p>
-          <p className="text-muted mt-7 mb-0" style={{ fontSize: '17px', lineHeight: 1.65, maxWidth: '58ch' }}>
-            {project.overview}
-          </p>
-        </div>
-      </div>
-      </>
-      )}
 
       <div className="gutter grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8 mt-24">
         <h2 className="eyebrow m-0" style={{ color: 'var(--color-accent)', fontSize: '13px' }} data-reveal>( What was built )</h2>
@@ -226,8 +174,6 @@ export const ProjectPage: React.FC = () => {
           </figure>
         </div>
       )}
-
-      <NextBlock label="Next project →" name={next.name} to={`/work/${next.slug}`} />
     </article>
   );
 };

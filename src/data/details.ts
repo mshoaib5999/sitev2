@@ -12,6 +12,7 @@ export interface FullProject {
   detailImage?: string;
   detailCaption?: string;
   scrollImage?: string;
+  stats?: { big: string; small: string }[];
 }
 
 const main: FullProject[] = [
@@ -33,6 +34,11 @@ const main: FullProject[] = [
     url: 'https://bastidedebasson.fr/',
     image: '/projects/bastide-main.jpg',
     scrollImage: '/projects/bastide-fullpage.jpg',
+    stats: [
+      { big: '28', small: 'Pages designed' },
+      { big: '02', small: 'Languages — FR · EN' },
+      { big: 'Direct', small: 'Booking on-site' },
+    ],
   },
   {
     slug: 'phaselink',
@@ -51,6 +57,7 @@ const main: FullProject[] = [
     ],
     url: 'https://phaselinkeng.com/',
     image: '/projects/phaselink-main.jpg',
+    scrollImage: '/projects/phaselink-fullpage.jpg',
     detailImage: '/projects/phaselink-detail.jpg',
     detailCaption: 'Transmission lines, up close',
   },
@@ -71,6 +78,7 @@ const main: FullProject[] = [
     ],
     url: 'https://thesolesurvivors.com/',
     image: '/projects/solesurvivors-main.jpg',
+    scrollImage: '/projects/sole-survivors-fullpage.jpg',
     detailImage: '/projects/solesurvivors-detail.jpg',
     detailCaption: 'Hero character art',
   },
@@ -91,6 +99,7 @@ const main: FullProject[] = [
     ],
     url: 'https://goldstar-learning.com/',
     image: '/projects/goldstar-main.jpg',
+    scrollImage: '/projects/goldstar-learning-fullpage.jpg',
     detailImage: '/projects/goldstar-detail.jpg',
     detailCaption: 'Test prep, up close',
   },
@@ -106,7 +115,7 @@ const more: FullProject[] = [
       { title: 'Speed optimised', text: 'Built and tuned for fast loads, with clean on-page SEO structure throughout.' },
       { title: 'Custom WordPress theme', text: 'Bespoke theme development, no off-the-shelf template underneath.' },
     ],
-    url: 'https://rossai.co.nz', image: '/projects/more/rossai.jpg',
+    url: 'https://rossai.co.nz', image: '/projects/more/rossai.jpg', scrollImage: '/projects/rossai-fullpage.jpg',
   },
   {
     slug: 'lumora-nutrition', name: 'Lumora Nutrition', yearLabel: 'Earlier work', service: 'WooCommerce — health & wellness store', place: 'USA / Global',
@@ -117,7 +126,7 @@ const more: FullProject[] = [
       { title: 'Subscriptions & payments', text: 'Recurring orders and card payments integrated into a smooth checkout.' },
       { title: 'Conversion-focused', text: 'Every section designed to answer an objection and move the sale forward.' },
     ],
-    url: 'https://trylumoradaily.com', image: '/projects/more/lumora.jpg',
+    url: 'https://trylumoradaily.com', image: '/projects/more/lumora.jpg', scrollImage: '/projects/lumora-nutrition-fullpage.jpg',
   },
   {
     slug: 'aion-dubai', name: 'AION Dubai', yearLabel: 'Earlier work', service: 'Real estate investment website — bilingual', place: 'UAE / Netherlands',
@@ -128,7 +137,7 @@ const more: FullProject[] = [
       { title: 'Dynamic project listings', text: 'ACF-powered project pages with brochures and lead-capture forms.' },
       { title: 'Consultation booking', text: 'A clear route from browsing projects to booking a call with the team.' },
     ],
-    url: 'https://aiondubai.com', image: '/projects/more/aion.jpg',
+    url: 'https://aiondubai.com', image: '/projects/more/aion.jpg', scrollImage: '/projects/aion-dubai-fullpage.jpg',
   },
   {
     slug: 'flip-my-life', name: 'Flip My Life', yearLabel: 'Earlier work', service: 'Financial & wealth advisory website', place: 'Canada',
@@ -139,7 +148,7 @@ const more: FullProject[] = [
       { title: 'Interactive calculators', text: 'Service calculators that let visitors explore their options before they enquire.' },
       { title: 'Client portal', text: 'Integrated portal access for existing clients, straight from the main site.' },
     ],
-    url: 'https://flipmylife.com', image: '/projects/more/flip-my-life.jpg',
+    url: 'https://flipmylife.com', image: '/projects/more/flip-my-life.jpg', scrollImage: '/projects/flip-my-life-fullpage.jpg',
   },
   {
     slug: 'creative-contracting', name: 'Creative Contracting', yearLabel: 'Earlier work', service: 'Engineering & construction website', place: 'USA',
@@ -150,7 +159,7 @@ const more: FullProject[] = [
       { title: 'Service-area structure', text: 'Location-based pages built for local search and local trust.' },
       { title: 'Elementor Pro build', text: 'A flexible build the team can extend as services and areas grow.' },
     ],
-    url: 'https://tampaccs.com', image: '/projects/more/creative-contracting.jpg',
+    url: 'https://tampaccs.com', image: '/projects/more/creative-contracting.jpg', scrollImage: '/projects/creative-contracting-fullpage.jpg',
   },
   {
     slug: 'myteam-support', name: 'MyTeam Support', yearLabel: 'Earlier work', service: 'Community & membership website', place: 'Non-profit',
@@ -172,7 +181,7 @@ const more: FullProject[] = [
       { title: 'Story & approach', text: 'About and approach sections that explain the firm’s hospitality-first model of residential ownership.' },
       { title: 'Press & news', text: 'A news section carrying the firm’s media coverage, from Forbes to The Real Deal.' },
     ],
-    url: 'https://northdevelopment.com', image: '/projects/more/north-development.jpg',
+    url: 'https://northdevelopment.com', image: '/projects/more/north-development.jpg', scrollImage: '/projects/north-development-fullpage.jpg',
   },
   {
     slug: 'pibi-pop', name: 'PiBi-POP', yearLabel: 'Earlier work', service: 'Health & wellness brand website', place: 'USA',
@@ -183,7 +192,7 @@ const more: FullProject[] = [
       { title: 'Science, told simply', text: 'The brand\u2019s three missions — closing the gut-health gap, simplifying wellness and premium nutrition at real value — explained in plain language a shopper can follow.' },
       { title: 'Built for trust', text: 'Transparent ingredients (no fillers, no GMOs, no artificial colours) and manufacture in GMP-certified, FDA-registered facilities surfaced throughout the journey.' },
     ],
-    url: 'https://pbpop.com/', image: '/projects/more/pibi-pop.jpg',
+    url: 'https://pbpop.com/', image: '/projects/more/pibi-pop.jpg', scrollImage: '/projects/pibi-pop-fullpage.jpg',
   },
 ];
 
