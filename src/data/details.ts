@@ -58,8 +58,6 @@ const main: FullProject[] = [
     url: 'https://phaselinkeng.com/',
     image: '/projects/phaselink-main.jpg',
     scrollImage: '/projects/phaselink-fullpage.jpg',
-    detailImage: '/projects/phaselink-detail.jpg',
-    detailCaption: 'Transmission lines, up close',
   },
   {
     slug: 'sole-survivors',
@@ -79,8 +77,6 @@ const main: FullProject[] = [
     url: 'https://thesolesurvivors.com/',
     image: '/projects/solesurvivors-main.jpg',
     scrollImage: '/projects/sole-survivors-fullpage.jpg',
-    detailImage: '/projects/solesurvivors-detail.jpg',
-    detailCaption: 'Hero character art',
   },
   {
     slug: 'goldstar-learning',
@@ -100,8 +96,6 @@ const main: FullProject[] = [
     url: 'https://goldstar-learning.com/',
     image: '/projects/goldstar-main.jpg',
     scrollImage: '/projects/goldstar-learning-fullpage.jpg',
-    detailImage: '/projects/goldstar-detail.jpg',
-    detailCaption: 'Test prep, up close',
   },
 ];
 
@@ -170,7 +164,7 @@ const more: FullProject[] = [
       { title: 'Online donations', text: 'A secure donation system integrated into the website.' },
       { title: 'Membership ready', text: 'Set up to support the organisation’s member community.' },
     ],
-    url: 'https://myteamsupport.com', image: '/projects/more/myteam.jpg',
+    url: 'https://myteamsupport.com', image: '/projects/more/myteam.jpg', scrollImage: '/projects/myteam-support-fullpage.jpg',
   },
   {
     slug: 'north-development', name: 'North Development', yearLabel: 'Earlier work', service: 'Real estate development website', place: 'Miami, USA',
