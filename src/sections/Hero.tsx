@@ -35,6 +35,7 @@ export const Hero: React.FC = () => {
       <div className="eyebrow flex items-start justify-between" data-reveal>
         <span>(Portfolio / ©2026)</span>
         <span className="hidden md:inline" style={{ color: 'var(--color-accent)' }}>Senior WordPress Developer</span>
+        <span>Trusted by businesses in 5+ countries</span>
       </div>
 
       <h1 ref={(el) => { (nameRef as any).current = el; (kineticRef as any).current = el; }} className="hero__name fvs-display" aria-label="Shoaib Asghar" style={{ willChange: 'transform, opacity' }}>
