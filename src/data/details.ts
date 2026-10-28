@@ -32,8 +32,6 @@ const main: FullProject[] = [
     ],
     url: 'https://bastidedebasson.fr/',
     image: '/projects/bastide-main.jpg',
-    detailImage: '/projects/bastide-detail.jpg',
-    detailCaption: 'The villa & gardens',
     scrollImage: '/projects/bastide-fullpage.jpg',
   },
   {
