@@ -11,6 +11,7 @@ export interface FullProject {
   image: string;
   detailImage?: string;
   detailCaption?: string;
+  scrollImage?: string;
 }
 
 const main: FullProject[] = [
@@ -23,16 +24,17 @@ const main: FullProject[] = [
     description:
       'A luxury villa in Correns, in the vineyards of Provence — private stays, a pool, gardens and private events, presented in a slow, editorial layout that lets the place sell itself.',
     overview:
-      'Bastide de Basson is a private Provençal estate: a luxury villa for stays and private events, surrounded by vines and gardens. The website had to feel like the place itself — calm, spacious and unhurried — while quietly doing the commercial work of presenting the rooms, the grounds and the events offer, and moving visitors toward an enquiry.',
+      'Bastide de Basson is a private Provençal estate: a luxury villa for stays and private events, surrounded by vines and gardens. The website had to feel like the place itself — calm, spacious and unhurried — while quietly doing the commercial work of presenting the rooms, the grounds and the events offer, and moving visitors toward a direct booking — in French or in English.',
     features: [
-      { title: 'A destination, not a listing', text: 'The homepage opens like a private estate brochure — full-bleed photography of the villa, pool and vineyards, with short, confident French copy and room to breathe.' },
-      { title: 'Stays & private events', text: 'Two clear journeys run through the site: holidays at the bastide, and private events in the gardens — each with its own pages, galleries and enquiry route.' },
-      { title: 'Editorial, French-first layout', text: 'Designed and built in WordPress with an editorial grid, generous white space and image-led sections the owners can update themselves.' },
+      { title: 'Direct booking, no middlemen', text: 'A booking bar sits on the homepage — arrival, departure, guests — taking visitors straight into a reservation on the estate’s own site, so bookings (and margins) stay with the owners instead of going to booking platforms.' },
+      { title: 'French & English, fully', text: 'The complete site exists in two languages — every page, room and event translated into English as well as French, with a language switcher in the header, so international guests book with the same confidence as local ones.' },
+      { title: '28 pages, one estate', text: 'Twenty-eight pages designed and built: the five bedrooms one by one, stays, private events and weddings, experiences, gallery, guest testimonials and a journal — an editorial layout with room to breathe that the owners can update themselves.' },
     ],
     url: 'https://bastidedebasson.fr/',
     image: '/projects/bastide-main.jpg',
     detailImage: '/projects/bastide-detail.jpg',
     detailCaption: 'The villa & gardens',
+    scrollImage: '/projects/bastide-fullpage.jpg',
   },
   {
     slug: 'phaselink',

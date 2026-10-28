@@ -1,8 +1,76 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getProject, nextProject } from '../data/details';
 import { NextBlock } from './shared';
 import { KineticText, useKinetic } from '../sections/Kinetic';
+
+
+/**
+ * Full-page screenshot in a fixed frame: hovering scrolls it slowly from
+ * top to bottom (the Elementor image-scroller behaviour), leaving scrolls
+ * it back. Tap toggles it on touch devices. Used on the Bastide case study.
+ */
+const HoverScrollImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
+  const frameRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const [offset, setOffset] = useState(0);
+  const [scrolling, setScrolling] = useState(false);
+
+  const measure = () => {
+    const f = frameRef.current;
+    const im = imgRef.current;
+    if (f && im) setOffset(Math.max(0, im.offsetHeight - f.offsetHeight));
+  };
+  useEffect(() => {
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+  const down = Math.max(4, offset / 105);
+  const up = Math.max(2.5, offset / 170);
+
+  return (
+    <div
+      ref={frameRef}
+      className="relative overflow-hidden bg-surface"
+      style={{ aspectRatio: '4 / 5', borderRadius: 'var(--radius-image)', border: '1px solid var(--color-hairline)' }}
+      onMouseEnter={() => setScrolling(true)}
+      onMouseLeave={() => setScrolling(false)}
+      onClick={() => setScrolling((s) => !s)}
+      data-cursor="Scroll"
+      data-hover
+      data-reveal
+    >
+      <img
+        ref={imgRef}
+        src={src}
+        alt={alt}
+        onLoad={measure}
+        className="block absolute left-0 top-0 w-full"
+        style={{
+          transform: `translateY(${scrolling ? -offset : 0}px)`,
+          transitionProperty: 'transform',
+          transitionDuration: `${scrolling ? down : up}s`,
+          transitionTimingFunction: 'linear',
+        }}
+      />
+      <div
+        className="absolute left-4 bottom-4 pointer-events-none"
+        style={{
+          background: 'rgba(10,10,10,0.72)',
+          border: '1px solid rgba(255,255,255,0.14)',
+          borderRadius: '999px',
+          padding: '7px 13px',
+          backdropFilter: 'blur(6px)',
+          opacity: scrolling ? 0 : 1,
+          transition: 'opacity 0.3s ease',
+        }}
+      >
+        <span className="eyebrow" style={{ color: 'var(--color-text)' }}>Full homepage — hover to scroll ↓</span>
+      </div>
+    </div>
+  );
+};
 
 export const ProjectPage: React.FC = () => {
   const { slug = '' } = useParams();
@@ -81,6 +149,33 @@ export const ProjectPage: React.FC = () => {
         </ul>
       </div>
 
+      {project.scrollImage ? (
+        <div className="gutter grid grid-cols-1 lg:grid-cols-[5fr_6fr] gap-10 lg:gap-14 mt-12 items-start">
+          <HoverScrollImage src={project.scrollImage} alt={`${project.name} — full homepage`} />
+          <div>
+            <h2 className="eyebrow m-0" style={{ color: 'var(--color-accent)', fontSize: '13px' }} data-reveal>( Overview )</h2>
+            <p className="font-medium mt-7 mb-0" style={{ fontSize: 'clamp(21px, 2.2vw, 31px)', lineHeight: 1.32 }} data-reveal>
+              {project.description}
+            </p>
+            <p className="text-muted mt-7 mb-0" style={{ fontSize: '17px', lineHeight: 1.65, maxWidth: '58ch' }} data-reveal>
+              {project.overview}
+            </p>
+            <div className="grid grid-cols-3 gap-6 mt-10" data-reveal>
+              {[
+                { big: '28', small: 'Pages designed' },
+                { big: '02', small: 'Languages — FR · EN' },
+                { big: 'Direct', small: 'Booking on-site' },
+              ].map((s) => (
+                <div key={s.small} className="pt-5" style={{ borderTop: '1px solid var(--color-hairline)' }}>
+                  <div className="fvs-display leading-none" style={{ fontSize: 'clamp(22px, 2vw, 32px)' }}>{s.big}</div>
+                  <div className="eyebrow mt-2.5">{s.small}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : (
+      <>
       <div className="gutter mt-12">
         <div className="overflow-hidden bg-surface" style={{ aspectRatio: '16 / 9', borderRadius: 'var(--radius-image)' }} data-reveal>
           <img
@@ -104,6 +199,8 @@ export const ProjectPage: React.FC = () => {
           </p>
         </div>
       </div>
+      </>
+      )}
 
       <div className="gutter grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8 mt-24">
         <h2 className="eyebrow m-0" style={{ color: 'var(--color-accent)', fontSize: '13px' }} data-reveal>( What was built )</h2>
