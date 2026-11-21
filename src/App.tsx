@@ -17,7 +17,7 @@ import { getProject } from './data/details';
 import { getService } from './data/services';
 
 const titles: Record<string, string> = {
-  '/': 'Muhammad Shoaib Asghar — Senior WordPress Developer',
+  '/': 'WordPress Developer for Businesses Worldwide | Muhammad Shoaib Asghar',
   '/work': 'Work — Muhammad Shoaib Asghar',
   '/about': 'About — Muhammad Shoaib Asghar',
   '/services': 'Services — Muhammad Shoaib Asghar',
@@ -70,7 +70,24 @@ const Shell: React.FC = () => {
   useReveal([introDone, displayLocation.pathname]);
 
   useEffect(() => {
-    document.title = titles[displayLocation.pathname] || 'Muhammad Shoaib Asghar — WordPress Developer';
+    const path = displayLocation.pathname;
+    if (titles[path]) {
+      document.title = titles[path];
+      return;
+    }
+    const sp = path.match(/^\/services\/(.+)$/);
+    if (sp) {
+      const svc = getService(sp[1]);
+      document.title = svc ? `${svc.title} — Muhammad Shoaib Asghar` : 'Services — Muhammad Shoaib Asghar';
+      return;
+    }
+    const wp = path.match(/^\/work\/(.+)$/);
+    if (wp) {
+      const proj = getProject(wp[1]);
+      document.title = proj ? `${proj.name} — Muhammad Shoaib Asghar` : 'Work — Muhammad Shoaib Asghar';
+      return;
+    }
+    document.title = 'Muhammad Shoaib Asghar — WordPress Developer';
   }, [displayLocation]);
 
   // Lenis smooth scrolling — the reference site's buttery scroll feel.
